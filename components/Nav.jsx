@@ -1,32 +1,33 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
-  const userLoggedIn = true;
+  const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
 
   useEffect(() => {
-    const setProviders = async () => {
+    const setupProviders = async () => {
       const response = await getProviders();
 
       setProviders(response);
     };
 
-    setProviders();
+    setupProviders();
   }, []);
 
   return (
-    <nav className="py-8 bg-gradient-to-b from-white to-transparent">
-      <div className="container flex items-center justify-between gap-4">
+    <nav className="py-2 bg-gradient-to-b from-white to-transparent">
+      <div className="container flex items-center justify-between gap-4 md:max-w-screen-lg">
         {/* Logo */}
         <Link
-          href={'/'}
-          className="text-2xl font-bold md:text-4xl text-slate-900"
+          href={"/"}
+          className="text-2xl font-bold md:text-3xl text-slate-900"
         >
           My
           <span className="text-transparent bg-gradient-to-tr from-green-700 to-green-500 bg-clip-text">
@@ -36,33 +37,41 @@ const Nav = () => {
         </Link>
 
         {/* Login */}
-        {userLoggedIn ? (
+        {session?.user ? (
           <div className="flex items-center gap-4">
-            <Link
-              className="px-4 py-2 text-white bg-black rounded"
-              href={'/trips/new'}
-            >
+            <Link className="button button__primary" href={"/trips/new"}>
               Add New Trip
             </Link>
 
-            <button className="px-4 py-2 border-2 rounded" onClick={signOut}>
+            <button
+              className="flex items-center gap-2 button"
+              onClick={signOut}
+            >
               Sign Out
+              <Image
+                className="object-cover rounded-full aspect-square"
+                src={session?.user.image}
+                width={16}
+                height={16}
+                alt="Profile image"
+              />
             </button>
           </div>
         ) : (
           <>
             {providers &&
-              Object.values(providers).map((provider) => {
+              Object.values(providers).map((provider, key) => (
                 <button
                   className="px-4 py-2 border-2 rounded"
                   type="button"
+                  key={key}
                   onClick={() => {
                     signIn(provider.id);
                   }}
                 >
                   Sign In
-                </button>;
-              })}
+                </button>
+              ))}
           </>
         )}
       </div>

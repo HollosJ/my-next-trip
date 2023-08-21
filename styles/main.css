@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Form Styles */
+
+.input {
+    @apply p-2 border-2 rounded;
+}
+
+.button {
+    @apply px-4 py-2 text-center transition border-2 rounded;
+
+    @apply hover:brightness-90
+}
+
+.button__primary {
+    @apply text-white bg-black border-black;
+}
+
+.button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+}
