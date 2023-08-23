@@ -1,6 +1,4 @@
-import React from "react";
-
-const Heading = ({ tag = "h2", text = "A Heading", children }) => {
+const Heading = ({ tag = 'h2', text = 'A Heading', children }) => {
   const CustomTag = `${tag}`;
 
   return (
