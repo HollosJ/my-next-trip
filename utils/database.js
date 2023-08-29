@@ -21,6 +21,6 @@ export const connectToDB = async () => {
 
     console.log('MDB Connected.');
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
