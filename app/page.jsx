@@ -1,9 +1,6 @@
 import Image from 'next/image';
 import HeroImage from '@/public/images/hero-image.svg';
-import PlaneImage from '@/public/images/plane.svg';
-import TrailImage from '@/public/images/trail.svg';
 import Link from 'next/link';
-import Heading from '@/components/Heading';
 
 export default function Home() {
   return (
