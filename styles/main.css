@@ -5,19 +5,23 @@
 /* Form Styles */
 
 .input {
-    @apply p-2 border-2 rounded;
+  @apply p-2 border-2 rounded;
 }
 
 .button {
-    @apply px-4 py-2 text-center transition border-2 rounded;
+  @apply flex justify-center px-4 py-2 text-center transition border-2 rounded;
 
-    @apply hover:brightness-90
+  @apply hover:brightness-90;
 }
 
-.button__primary {
-    @apply text-white bg-black border-black;
+.button--primary {
+  @apply text-white bg-black border-black;
 }
 
 .button:disabled {
-    @apply opacity-50 cursor-not-allowed;
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.gradient--green {
+  @apply bg-gradient-to-tr from-green-700 to-green-500;
 }
