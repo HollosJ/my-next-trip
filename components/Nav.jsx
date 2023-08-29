@@ -23,7 +23,7 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className="py-2 bg-gradient-to-b from-white to-transparent">
+    <nav className="py-2 bg-white">
       <div className="container flex items-center justify-between gap-4 md:max-w-screen-lg">
         {/* Logo */}
         <Link
@@ -39,7 +39,7 @@ const Nav = () => {
 
         {/* Mobile Toggle Button */}
         <button
-          className="flex md:hidden button button__primary"
+          className="md:hidden"
           onClick={() => {
             setMenuOpen((prev) => {
               return !prev;
@@ -79,7 +79,7 @@ const Nav = () => {
         <div className="hidden gap-2 md:flex">
           {session?.user ? (
             <div className="grid items-center gap-4 md:flex">
-              <Link className="button button__primary" href={'/trips/new'}>
+              <Link className="button button--primary" href={'/trips/new'}>
                 Add New Trip
               </Link>
 
@@ -102,14 +102,14 @@ const Nav = () => {
               {providers &&
                 Object.values(providers).map((provider, key) => (
                   <button
-                    className="px-4 py-2 border-2 rounded"
+                    className="button button--primary"
                     type="button"
                     key={key}
                     onClick={() => {
                       signIn(provider.id);
                     }}
                   >
-                    Sign In
+                    Sign in with Google
                   </button>
                 ))}
             </>
@@ -122,8 +122,8 @@ const Nav = () => {
         <div className="bg-white md:hidden">
           <div className="container grid gap-4 p-4 md:max-w-screen-lg">
             {session?.user ? (
-              <div className="grid items-center gap-4 md:flex">
-                <Link className="button button__primary" href={'/trips/new'}>
+              <div className="grid items-center gap-2 md:flex">
+                <Link className="button button--primary" href={'/trips/new'}>
                   Add New Trip
                 </Link>
 
@@ -146,14 +146,14 @@ const Nav = () => {
                 {providers &&
                   Object.values(providers).map((provider, key) => (
                     <button
-                      className="button"
+                      className="button button--primary"
                       type="button"
                       key={key}
                       onClick={() => {
                         signIn(provider.id);
                       }}
                     >
-                      Sign In
+                      Sign in with Google
                     </button>
                   ))}
               </>
