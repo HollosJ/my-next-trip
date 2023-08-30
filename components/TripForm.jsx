@@ -1,6 +1,6 @@
-import Link from "next/link";
-import Heading from "./Heading";
-import { countries } from "@/public/countries";
+import Link from 'next/link';
+import Heading from './Heading';
+import { countries } from '@/public/countries';
 
 const Form = ({ type, trip, setTrip, submitting, handleSubmit }) => {
   return (
@@ -80,8 +80,8 @@ const Form = ({ type, trip, setTrip, submitting, handleSubmit }) => {
             Cancel
           </Link>
 
-          <button className="button button__primary" disabled={submitting}>
-            {submitting ? "Submitting..." : type}
+          <button className="button button--primary" disabled={submitting}>
+            {submitting ? 'Submitting...' : type}
           </button>
         </div>
       </form>
