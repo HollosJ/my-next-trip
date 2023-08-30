@@ -4,59 +4,35 @@ import Heading from '@/components/Heading';
 import Protected from '@/components/Protected';
 import PointsOfInterestGrid from '@/components/PointsOfInterestGrid';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { ClockIcon } from '@heroicons/react/24/solid';
 
 const Trip = ({ params }) => {
   const { data: session } = useSession();
-  const router = useRouter();
   const [trip, setTrip] = useState({});
   const [loading, setLoading] = useState(true);
   const [daysTill, setDaysTill] = useState(0);
 
   useEffect(() => {
-    const fetchTrip = async () => {
-      const response = await fetch(
-        `/api/users/${session?.user.id}/trips/${params.trip}`
-      );
-      const data = await response.json();
-
-      setTrip(data);
-      setLoading(false);
-
-      const today = new Date();
-      const tripDate = new Date(data.startDate);
-
-      const difference =
-        (tripDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
-
-      setDaysTill(Math.round(difference));
-    };
-
     if (session?.user.id) fetchTrip();
   }, [session?.user.id]);
 
-  const updateTrip = async (newTrip) => {
-    // Update state
-    setTrip(newTrip);
+  const fetchTrip = async () => {
+    const response = await fetch(
+      `/api/users/${session?.user.id}/trips/${params.trip}`
+    );
+    const data = await response.json();
 
-    // Update database with PATCH request
-    try {
-      const response = await fetch(
-        `/api/users/${session?.user.id}/trips/${params.trip}`,
-        { method: 'PATCH', body: JSON.stringify(trip) }
-      );
+    setTrip(data);
+    setLoading(false);
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+    const today = new Date();
+    const tripDate = new Date(data.startDate);
 
-      const data = await response.json();
-      console.log('Updated trip:', data);
-    } catch (error) {
-      console.error(error);
-    }
+    const difference =
+      (tripDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
+
+    setDaysTill(Math.round(difference));
   };
 
   return (
@@ -80,7 +56,7 @@ const Trip = ({ params }) => {
           )}
 
           {trip ? (
-            <PointsOfInterestGrid trip={trip} updateTrip={updateTrip} />
+            <PointsOfInterestGrid trip={trip} setTrip={setTrip} />
           ) : (
             'Loading'
           )}
