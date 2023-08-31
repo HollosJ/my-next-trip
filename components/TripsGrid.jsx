@@ -6,6 +6,8 @@ import Protected from './Protected';
 import Link from 'next/link';
 import Heading from './Heading';
 
+import { formatDate } from '@/utils/helpers';
+
 const TripsGrid = () => {
   const { data: session } = useSession();
   const [trips, setTrips] = useState([]);
@@ -35,11 +37,13 @@ const TripsGrid = () => {
               <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
                 {trips.map((trip) => (
                   <Link
-                    className="p-4 bg-white rounded shadow-md"
+                    className="p-4 transition bg-white rounded shadow-md hover:opacity-75"
                     key={trip._id}
                     href={`/trips/${trip._id}`}
                   >
-                    {trip.location}
+                    <h3 className="font-bold">{trip.location}</h3>
+
+                    <span>{formatDate(trip.startDate)}</span>
                   </Link>
                 ))}
               </div>
