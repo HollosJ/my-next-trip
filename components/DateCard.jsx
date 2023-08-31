@@ -3,14 +3,10 @@
 import { useSession } from 'next-auth/react';
 import Activity from './Activity';
 import ActivityForm from './ActivityForm';
+import { formatDate } from '@/utils/helpers';
 
 const DateCard = ({ trip, day, setTrip }) => {
   const { data: session } = useSession();
-
-  function formatDate(date) {
-    const options = { weekday: 'long', day: 'numeric', month: 'long' };
-    return new Intl.DateTimeFormat('en-US', options).format(date);
-  }
 
   const handleEditActivity = (editedActivity) => {
     // Handle the logic to update the edited activity
