@@ -98,46 +98,44 @@ const Nav = () => {
 
       {/* Mobile Navigation */}
       {menuOpen && (
-        <div className="bg-white md:hidden">
-          <div className="container grid gap-4 p-4 md:max-w-screen-lg">
-            {session?.user ? (
-              <div className="grid items-center gap-2 md:flex">
-                <Link className="button button--primary" href={'/trips/new'}>
-                  Add New Trip
-                </Link>
+        <div className="container grid gap-4 p-4 md:hidden md:max-w-screen-lg">
+          {session?.user ? (
+            <div className="grid items-center gap-2 md:flex">
+              <Link className="button button--primary" href={'/trips/new'}>
+                Add New Trip
+              </Link>
 
-                <button
-                  className="flex items-center gap-2 button"
-                  onClick={signOut}
-                >
-                  Sign Out
-                  <Image
-                    className="object-cover rounded-full aspect-square"
-                    src={session?.user.image}
-                    width={16}
-                    height={16}
-                    alt="Profile image"
-                  />
-                </button>
-              </div>
-            ) : (
-              <>
-                {providers &&
-                  Object.values(providers).map((provider, key) => (
-                    <button
-                      className="button button--primary"
-                      type="button"
-                      key={key}
-                      onClick={() => {
-                        signIn(provider.id);
-                      }}
-                    >
-                      Sign in with Google
-                    </button>
-                  ))}
-              </>
-            )}
-          </div>
+              <button
+                className="flex items-center gap-2 button"
+                onClick={signOut}
+              >
+                Sign Out
+                <Image
+                  className="object-cover rounded-full aspect-square"
+                  src={session?.user.image}
+                  width={16}
+                  height={16}
+                  alt="Profile image"
+                />
+              </button>
+            </div>
+          ) : (
+            <>
+              {providers &&
+                Object.values(providers).map((provider, key) => (
+                  <button
+                    className="button button--primary"
+                    type="button"
+                    key={key}
+                    onClick={() => {
+                      signIn(provider.id);
+                    }}
+                  >
+                    Sign in with Google
+                  </button>
+                ))}
+            </>
+          )}
         </div>
       )}
     </nav>
