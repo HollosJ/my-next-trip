@@ -24,7 +24,7 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className="py-2 bg-white">
+    <nav className="py-2">
       <div className="container flex items-center justify-between gap-4 md:max-w-screen-lg">
         {/* Logo */}
         <Link
