@@ -77,9 +77,10 @@ const DateCard = ({ trip, day, setTrip }) => {
   };
 
   return (
-    <div className="grid content-start gap-8 p-4 text-left bg-white rounded shadow-md">
+    <div className="grid content-start flex-1 gap-4 p-4 text-left bg-white rounded">
       {/* Formatted date */}
       <h3 className="text-lg font-bold">{formatDate(new Date(day.date))}</h3>
+
       {/* Activities */}
       {day.activities.length > 0 && (
         <div className="grid gap-4">

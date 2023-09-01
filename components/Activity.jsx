@@ -10,7 +10,7 @@ const Activity = ({ activity, onSave, handleDeleteActivity }) => {
   };
 
   return (
-    <div className="p-4 rounded bg-slate-50">
+    <div className="text-black rounded">
       {/* Show activity details */}
       {formShowing ? (
         <ActivityForm
@@ -19,23 +19,24 @@ const Activity = ({ activity, onSave, handleDeleteActivity }) => {
           setFormShowing={setFormShowing}
         />
       ) : (
-        <div className="grid">
-          <div className="flex gap-2 justify-self-end">
-            <button className="underline" onClick={() => setFormShowing(true)}>
-              <PencilSquareIcon className="w-6 h-6 transition text-slate-400 hover:text-slate-600" />
-            </button>
+        <div className="relative flex border-2 rounded">
+          <div className="grid flex-1 p-4">
+            <h3 className="text-lg font-bold">{activity.title}</h3>
+            {activity.location && <span>{activity.location}</span>}
+            {activity.notes && <p className="opacity-75">"{activity.notes}"</p>}
+          </div>
 
+          <div className="grid gap-2 p-4 border-l-2">
             <button
               className="underline"
               onClick={() => handleDeleteActivity(activity._id)}
             >
-              <TrashIcon className="w-6 h-6 transition text-slate-400 hover:text-slate-600" />
+              <TrashIcon className="w-6 h-6 text-red-400 transition hover:opacity-75" />
+            </button>
+            <button className="underline" onClick={() => setFormShowing(true)}>
+              <PencilSquareIcon className="w-6 h-6 text-green-400 transition hover:opacity-75" />
             </button>
           </div>
-
-          <h3 className="text-lg font-bold">{activity.title}</h3>
-          {activity.location && <span>{activity.location}</span>}
-          {activity.notes && <p className="opacity-75">"{activity.notes}"</p>}
         </div>
       )}
     </div>
