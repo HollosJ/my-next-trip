@@ -18,17 +18,23 @@ const TripsGrid = () => {
       const response = await fetch(`/api/users/${session?.user.id}/trips`);
       const data = await response.json();
 
-      setTrips(data);
+      const dataSorted = data.sort(function (a, b) {
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(a.startDate) - new Date(b.startDate);
+      });
+
+      setTrips(dataSorted);
       setLoading(false);
     };
 
     if (session?.user.id) fetchTrips();
   }, [session?.user.id]);
   return (
-    <div className="grid gap-8">
-      <Heading>My Trips</Heading>
+    <Protected session={session}>
+      <div className="grid gap-8">
+        <Heading>My Trips</Heading>
 
-      <Protected session={session}>
         <div className="grid gap-4">
           {loading ? (
             'Loading your trips...'
@@ -56,8 +62,8 @@ const TripsGrid = () => {
             Add New
           </Link>
         </div>
-      </Protected>
-    </div>
+      </div>
+    </Protected>
   );
 };
 
