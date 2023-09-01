@@ -6,6 +6,7 @@ import PointsOfInterestGrid from '@/components/PointsOfInterestGrid';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { ClockIcon } from '@heroicons/react/24/solid';
+import Skeleton from '@/components/Skeleton';
 
 const Trip = ({ params }) => {
   const { data: session } = useSession();
@@ -38,10 +39,14 @@ const Trip = ({ params }) => {
   return (
     <>
       <div className="container my-8 md:max-w-screen-md">
-        <Protected session={session}>
-          {loading ? (
-            <div className="w-full h-10 rounded md:w-64 bg-slate-400 animate-pulse"></div>
-          ) : (
+        {loading ? (
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <Skeleton className={'h-10 w-64'} />
+
+            <Skeleton className={'h-10 w-48'} />
+          </div>
+        ) : (
+          <Protected session={session}>
             <div className="flex flex-wrap items-center justify-between gap-4">
               <Heading>Your Trip To {trip.location}</Heading>
 
@@ -53,14 +58,10 @@ const Trip = ({ params }) => {
                 </div>
               )}
             </div>
-          )}
 
-          {trip ? (
             <PointsOfInterestGrid trip={trip} setTrip={setTrip} />
-          ) : (
-            'Loading'
-          )}
-        </Protected>
+          </Protected>
+        )}
       </div>
     </>
   );
