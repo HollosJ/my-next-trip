@@ -4,8 +4,9 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
+import { signOut, useSession, getProviders } from 'next-auth/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
+import SignInWithGoogle from './SignInWithGoogle';
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -77,21 +78,7 @@ const Nav = () => {
               </button>
             </div>
           ) : (
-            <>
-              {providers &&
-                Object.values(providers).map((provider, key) => (
-                  <button
-                    className="button button--primary"
-                    type="button"
-                    key={key}
-                    onClick={() => {
-                      signIn(provider.id);
-                    }}
-                  >
-                    Sign in with Google
-                  </button>
-                ))}
-            </>
+            <SignInWithGoogle />
           )}
         </div>
       </div>
@@ -120,21 +107,7 @@ const Nav = () => {
               </button>
             </div>
           ) : (
-            <>
-              {providers &&
-                Object.values(providers).map((provider, key) => (
-                  <button
-                    className="button button--primary"
-                    type="button"
-                    key={key}
-                    onClick={() => {
-                      signIn(provider.id);
-                    }}
-                  >
-                    Sign in with Google
-                  </button>
-                ))}
-            </>
+            <SignInWithGoogle />
           )}
         </div>
       )}
