@@ -1,7 +1,7 @@
-import NextAuth from "next-auth/next";
-import GoogleProvider from "next-auth/providers/google";
-import { connectToDB } from "@/utils/database";
-import User from "@/models/user";
+import NextAuth from 'next-auth/next';
+import GoogleProvider from 'next-auth/providers/google';
+import { connectToDB } from '@/utils/database';
+import User from '@/models/user';
 
 const handler = NextAuth({
   providers: [
@@ -10,6 +10,7 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
+
   callbacks: {
     async session({ session, token }) {
       // Get current user for session
@@ -32,7 +33,7 @@ const handler = NextAuth({
 
         return true;
       } catch (error) {
-        console.error(error);
+        console.error(error.message);
 
         return false;
       }
