@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
         <Provider>
           <Nav />
 
-          <main>{children}</main>
+          <main className="my-8">{children}</main>
         </Provider>
       </body>
     </html>
