@@ -57,11 +57,13 @@ const TripsGrid = () => {
           ) : (
             <span>You have no trips yet!</span>
           )}
+        </div>
 
+        {!loading && (
           <Link className="button button--primary" href={'/trips/new'}>
             Add New
           </Link>
-        </div>
+        )}
       </div>
     </Protected>
   );
