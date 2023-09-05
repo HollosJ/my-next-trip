@@ -29,7 +29,7 @@ const Nav = () => {
       <div className="container flex items-center justify-between gap-4 md:max-w-screen-lg">
         {/* Logo */}
         <Link
-          href={'/trips'}
+          href={`${session?.user ? '/trips' : '/'}`}
           className="text-2xl font-bold md:text-3xl text-slate-900"
         >
           My
@@ -59,6 +59,10 @@ const Nav = () => {
         <div className="hidden gap-2 md:flex">
           {session?.user ? (
             <div className="grid items-center gap-4 md:flex">
+              <Link className="button" href={'/trips'}>
+                All Trips
+              </Link>
+
               <Link className="button button--primary" href={'/trips/new'}>
                 Add New Trip
               </Link>
@@ -88,6 +92,10 @@ const Nav = () => {
         <div className="container grid gap-4 p-4 md:hidden md:max-w-screen-lg">
           {session?.user ? (
             <div className="grid items-center gap-2 md:flex">
+              <Link className="button" href={'/trips'}>
+                All Trips
+              </Link>
+
               <Link className="button button--primary" href={'/trips/new'}>
                 Add New Trip
               </Link>
