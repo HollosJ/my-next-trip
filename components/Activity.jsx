@@ -31,7 +31,14 @@ const Activity = ({ activity, onSave, handleDeleteActivity }) => {
           <div className="grid content-start gap-1 pt-4 pr-4">
             <button
               className="underline"
-              onClick={() => handleDeleteActivity(activity._id)}
+              onClick={() => {
+                if (
+                  window.confirm(
+                    'Are you sure you want to delete this activity?'
+                  )
+                )
+                  handleDeleteActivity(activity.id);
+              }}
             >
               <TrashIcon className="w-6 h-6 transition text-slate-300 hover:brightness-90" />
             </button>
