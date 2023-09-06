@@ -78,7 +78,7 @@ const ActivityForm = ({ activity, onSave, setFormShowing }) => {
           id={fieldIDs.notes}
           value={editedActivity.notes}
           onChange={handleInputChange}
-          datafieldtitle="notes "
+          datafieldtitle="notes"
         />
       </div>
 
