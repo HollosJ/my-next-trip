@@ -7,7 +7,7 @@ const Form = ({ type, trip, setTrip, submitting, handleSubmit }) => {
     <section className="grid gap-8 p-8 bg-white rounded shadow-md">
       <Heading>{type} Trip</Heading>
 
-      <form className="grid gap-8" onSubmit={handleSubmit}>
+      <form className="grid gap-8 whitespace-normal" onSubmit={handleSubmit}>
         {/* Location */}
         <div className="grid">
           <label htmlFor="location">Where are you going?</label>

@@ -19,7 +19,7 @@ const Activity = ({ activity, onSave, handleDeleteActivity }) => {
           setFormShowing={setFormShowing}
         />
       ) : (
-        <div className="relative flex border-2 rounded">
+        <div className="relative flex whitespace-normal border-2 rounded">
           {/* Activity content */}
           <div className="grid flex-1 p-4">
             <h3 className="text-lg font-bold">{activity.title}</h3>
@@ -28,16 +28,16 @@ const Activity = ({ activity, onSave, handleDeleteActivity }) => {
           </div>
 
           {/* Actions */}
-          <div className="grid content-start gap-1 p-1">
+          <div className="grid content-start gap-1 pt-4 pr-4">
             <button
               className="underline"
               onClick={() => handleDeleteActivity(activity._id)}
             >
-              <TrashIcon className="w-6 h-6 text-red-400 transition hover:opacity-75" />
+              <TrashIcon className="w-6 h-6 transition text-slate-300 hover:brightness-90" />
             </button>
 
             <button className="underline" onClick={() => setFormShowing(true)}>
-              <PencilSquareIcon className="w-6 h-6 text-green-400 transition hover:opacity-75" />
+              <PencilSquareIcon className="w-6 h-6 transition text-slate-300 hover:brightness-90" />
             </button>
           </div>
         </div>

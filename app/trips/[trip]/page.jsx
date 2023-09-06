@@ -2,7 +2,7 @@
 
 import Heading from '@/components/Heading';
 import Protected from '@/components/Protected';
-import PointsOfInterestGrid from '@/components/PointsOfInterestGrid';
+import DateColumns from '@/components/DateColumns';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { ClockIcon } from '@heroicons/react/24/solid';
@@ -38,7 +38,7 @@ const Trip = ({ params }) => {
 
   return (
     <>
-      <div className="container my-8 md:max-w-screen-md">
+      <div className="px-4 my-8">
         <Protected session={session}>
           {loading ? (
             <div className="flex flex-wrap items-center justify-between gap-4">
@@ -60,7 +60,7 @@ const Trip = ({ params }) => {
                 )}
               </div>
 
-              <PointsOfInterestGrid trip={trip} setTrip={setTrip} />
+              <DateColumns trip={trip} setTrip={setTrip} />
             </>
           )}
         </Protected>
