@@ -13,6 +13,6 @@ export const GET = async (request, { params }) => {
       status: 200,
     });
   } catch (error) {
-    return new Response('Failed to fetch trips', { status: 500 });
+    return new Response(error.message, { status: 500 });
   }
 };

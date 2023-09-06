@@ -21,8 +21,14 @@ const TripsGrid = () => {
   const fetchTrips = async () => {
     const response = await fetch(`/api/users/${session?.user.id}/trips`);
 
-    if (!response.ok) setError(true);
-    else setError(false);
+    if (!response.ok) {
+      setError(true);
+      console.error(response.body);
+
+      return;
+    }
+
+    setError(false);
 
     const data = await response.json();
 
