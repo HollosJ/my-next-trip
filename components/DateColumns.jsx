@@ -1,6 +1,6 @@
 import DateColumn from './DateColumn';
 
-const DateColumns = ({ trip, updateTrip, fetchTrip, setTrip }) => {
+const DateColumns = ({ trip, updateTrip, setTrip }) => {
   return (
     <div className="flex gap-2 py-1 my-8 overflow-x-auto whitespace-nowrap">
       {trip.itinerary
