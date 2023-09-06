@@ -1,6 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { v4 as uuid } from 'uuid';
 
 const ActivityForm = ({ activity, onSave, setFormShowing }) => {
+  const fieldIDs = {
+    title: uuid(),
+    location: uuid(),
+    notes: uuid(),
+  };
+
   const [editedActivity, setEditedActivity] = useState(
     activity || {
       title: '',
@@ -10,11 +17,11 @@ const ActivityForm = ({ activity, onSave, setFormShowing }) => {
   );
 
   const handleInputChange = (event) => {
-    const { id, value } = event.target;
+    const { datafieldtitle, value } = event.target;
 
     setEditedActivity((prevActivity) => ({
       ...prevActivity,
-      [id]: value,
+      [datafieldtitle]: value,
     }));
   };
 
@@ -37,37 +44,40 @@ const ActivityForm = ({ activity, onSave, setFormShowing }) => {
     <form className="grid gap-4" onSubmit={handleSave}>
       {/* Title (required) */}
       <div className="grid">
-        <label htmlFor="title">What?</label>
+        <label htmlFor={fieldIDs.title}>What?</label>
         <input
           className="input"
           type="text"
-          id="title"
+          id={fieldIDs.title}
           value={editedActivity.title}
           onChange={handleInputChange}
+          datafieldtitle="title"
           required
         />
       </div>
 
       {/* Location (optional) */}
       <div className="grid">
-        <label htmlFor="location">Where?</label>
+        <label htmlFor={fieldIDs.location}>Where?</label>
         <input
           className="input"
           type="text"
-          id="location"
+          id={fieldIDs.location}
           value={editedActivity.location}
           onChange={handleInputChange}
+          datafieldtitle="location"
         />
       </div>
 
       {/* Notes (optional) */}
       <div className="grid">
-        <label htmlFor="notes">Relevant Notes</label>
+        <label htmlFor={fieldIDs.notes}>Relevant Notes</label>
         <textarea
           className="input"
-          id="notes"
+          id={fieldIDs.notes}
           value={editedActivity.notes}
           onChange={handleInputChange}
+          datafieldtitle="notes "
         />
       </div>
 
