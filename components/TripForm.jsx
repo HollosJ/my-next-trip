@@ -4,7 +4,7 @@ import { countries } from '@/public/countries';
 
 const Form = ({ type, trip, setTrip, submitting, handleSubmit }) => {
   return (
-    <section className="grid gap-8 p-8 bg-white rounded shadow-md">
+    <section className="grid gap-8 p-4 bg-white rounded shadow-md">
       <Heading>{type} Trip</Heading>
 
       <form className="grid gap-8 whitespace-normal" onSubmit={handleSubmit}>
