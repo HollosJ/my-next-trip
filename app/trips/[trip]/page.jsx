@@ -62,7 +62,7 @@ const Trip = ({ params }) => {
 
   return (
     <>
-      <div className="px-4 my-8">
+      <div className="container px-4 my-8">
         <Protected session={session}>
           {loading ? (
             <div className="flex flex-wrap items-center justify-between gap-4">
