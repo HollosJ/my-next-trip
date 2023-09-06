@@ -19,7 +19,7 @@ const Activity = ({ activity, onSave, handleDeleteActivity }) => {
           setFormShowing={setFormShowing}
         />
       ) : (
-        <div className="relative flex whitespace-normal border-2 rounded">
+        <div className="relative flex whitespace-normal bg-white rounded shadow-md">
           {/* Activity content */}
           <div className="grid flex-1 p-4">
             <h3 className="text-lg font-bold">{activity.title}</h3>
