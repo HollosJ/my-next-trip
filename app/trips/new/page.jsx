@@ -26,6 +26,12 @@ const NewTrip = () => {
       return;
     }
 
+    if (trip.startDate > trip.endDate) {
+      alert('Leaving date must be after arrival date...');
+
+      return;
+    }
+
     // Set 'loading' state so we can disable submit button once pressed
     setSubmitting(true);
 
