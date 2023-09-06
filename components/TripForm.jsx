@@ -45,12 +45,15 @@ const Form = ({ type, trip, setTrip, submitting, handleSubmit }) => {
               id="start_date"
               value={trip.startDate}
               required
-              onChange={(e) =>
-                setTrip({
-                  ...trip,
-                  startDate: e.target.value,
-                })
-              }
+              onChange={async (e) => {
+                let newTrip = { ...trip, startDate: e.target.value };
+
+                if (!trip.endDate) {
+                  newTrip.endDate = e.target.value;
+                }
+
+                setTrip(newTrip);
+              }}
             />
           </div>
 
@@ -75,7 +78,7 @@ const Form = ({ type, trip, setTrip, submitting, handleSubmit }) => {
         </div>
 
         {/* Buttons */}
-        <div className="grid gap-2 justify-self-end sm:grid-cols-2">
+        <div className="flex flex-wrap gap-2 justify-self-end">
           <Link className="button" href="/">
             Cancel
           </Link>
