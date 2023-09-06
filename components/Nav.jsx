@@ -92,17 +92,32 @@ const Nav = () => {
         <div className="container grid gap-4 p-4 md:hidden md:max-w-screen-lg">
           {session?.user ? (
             <div className="grid items-center gap-2 md:flex">
-              <Link className="button" href={'/trips'}>
+              <Link
+                className="button"
+                href={'/trips'}
+                onClick={() => {
+                  setMenuOpen(false);
+                }}
+              >
                 All Trips
               </Link>
 
-              <Link className="button button--primary" href={'/trips/new'}>
+              <Link
+                className="button button--primary"
+                href={'/trips/new'}
+                onClick={() => {
+                  setMenuOpen(false);
+                }}
+              >
                 Add New Trip
               </Link>
 
               <button
                 className="flex items-center gap-2 button"
-                onClick={signOut}
+                onClick={() => {
+                  signOut();
+                  setMenuOpen(false);
+                }}
               >
                 Sign Out
                 <Image
