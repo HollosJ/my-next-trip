@@ -4,9 +4,11 @@ import { useSession } from 'next-auth/react';
 import Activity from './Activity';
 import ActivityForm from './ActivityForm';
 import { formatDate } from '@/utils/helpers';
+import { useState } from 'react';
 
 const DateColumn = ({ trip, day, setTrip }) => {
   const { data: session } = useSession();
+  const [formShowing, setFormShowing] = useState(false);
 
   const handleEditActivity = (editedActivity) => {
     // Handle the logic to update the edited activity
@@ -77,16 +79,16 @@ const DateColumn = ({ trip, day, setTrip }) => {
   };
 
   return (
-    <div className="inline-grid content-start gap-4 p-4 text-left bg-white rounded min-w-[320px] max-w-[320px] shadow">
+    <div className="inline-grid content-start gap-4 p-4 text-left bg-gray-300 rounded min-w-[320px] max-w-[320px] shadow">
       {/* Formatted date */}
       <h3 className="text-lg font-bold">{formatDate(new Date(day.date))}</h3>
 
       {/* Activities */}
       {day.activities.length > 0 && (
         <div className="grid gap-4">
-          {day.activities.map((activity) => (
+          {day.activities.map((activity, key) => (
             <Activity
-              key={activity._id}
+              key={key}
               activity={activity}
               handleDeleteActivity={handleDeleteActivity}
               onSave={handleEditActivity}
@@ -95,7 +97,19 @@ const DateColumn = ({ trip, day, setTrip }) => {
         </div>
       )}
 
-      <ActivityForm onSave={handleAddActivity} />
+      {formShowing ? (
+        <ActivityForm
+          onSave={handleAddActivity}
+          setFormShowing={setFormShowing}
+        />
+      ) : (
+        <button
+          className="button button--primary"
+          onClick={() => setFormShowing(true)}
+        >
+          Add New
+        </button>
+      )}
     </div>
   );
 };

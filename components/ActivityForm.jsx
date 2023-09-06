@@ -30,15 +30,12 @@ const ActivityForm = ({ activity, onSave, setFormShowing }) => {
     e.preventDefault();
     onSave(editedActivity);
 
-    if (!activity) {
-      setEditedActivity({
-        title: '',
-        location: '',
-        notes: '',
-      });
-    } else {
-      setFormShowing(false);
-    }
+    setEditedActivity({
+      title: '',
+      location: '',
+      notes: '',
+    });
+    setFormShowing(false);
   };
 
   return (
@@ -83,11 +80,9 @@ const ActivityForm = ({ activity, onSave, setFormShowing }) => {
       </div>
 
       <div className="flex gap-2 justify-self-end">
-        {activity && (
-          <button className="button" onClick={() => setFormShowing(false)}>
-            Cancel
-          </button>
-        )}
+        <button className="button" onClick={() => setFormShowing(false)}>
+          Cancel
+        </button>
 
         <button className="button button--primary">
           {activity ? 'Save Changes' : 'Add Activity'}
