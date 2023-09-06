@@ -17,11 +17,12 @@ const ActivityForm = ({ activity, onSave, setFormShowing }) => {
   );
 
   const handleInputChange = (event) => {
-    const { datafieldtitle, value } = event.target;
+    const key = event.target.getAttribute('datafieldtitle');
+    const value = event.target.value;
 
     setEditedActivity((prevActivity) => ({
       ...prevActivity,
-      [datafieldtitle]: value,
+      [key]: value,
     }));
   };
 
