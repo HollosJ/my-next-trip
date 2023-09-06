@@ -1,6 +1,7 @@
 import Trip from '@/models/trip';
 import { connectToDB } from '@/utils/database';
 
+// Fetch a trip
 export const GET = async (request, { params }) => {
   try {
     await connectToDB();
@@ -18,6 +19,7 @@ export const GET = async (request, { params }) => {
   }
 };
 
+// Update a trip
 export const PATCH = async (request, { params }) => {
   const { itinerary } = await request.json();
 
@@ -47,4 +49,18 @@ export const PATCH = async (request, { params }) => {
   }
 };
 
-// delete
+// Delete a trip
+export const DELETE = async (request, { params }) => {
+  try {
+    await connectToDB();
+
+    await Trip.findOneAndDelete({
+      _id: params.tripID,
+    });
+
+    return new Response('Successfully deleted trip', { status: 201 });
+  } catch (error) {
+    console.error(error);
+    return new Response('Failed to delete trip', { status: 500 });
+  }
+};
