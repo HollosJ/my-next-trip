@@ -28,7 +28,7 @@ const Activity = ({ activity, onSave, handleDeleteActivity }) => {
           </div>
 
           {/* Actions */}
-          <div className="grid content-start gap-1 pt-4 pr-4">
+          <div className="grid content-start gap-1 p-4 pl-0">
             <button
               className="underline"
               onClick={() => {
