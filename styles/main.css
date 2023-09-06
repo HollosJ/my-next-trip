@@ -18,6 +18,10 @@
   @apply text-white bg-black border-black;
 }
 
+.button--danger {
+  @apply text-white bg-red-500 border-red-500;
+}
+
 .button:disabled {
   @apply opacity-50 cursor-not-allowed;
 }
