@@ -1,11 +1,14 @@
 'use client';
 
 import { signIn, getProviders, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const SignInWithGoogle = () => {
   const [providers, setProviders] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { data: session } = useSession();
+  const router = useRouter;
 
   useEffect(() => {
     const setupProviders = async () => {
@@ -17,6 +20,13 @@ const SignInWithGoogle = () => {
     setupProviders();
   }, []);
 
+  const handleSignIn = async (provider) => {
+    setLoading(true);
+    await signIn(provider.id);
+
+    setLoading(false);
+  };
+
   return (
     <>
       {!session?.user &&
@@ -26,11 +36,10 @@ const SignInWithGoogle = () => {
             className="button button--primary"
             type="button"
             key={key}
-            onClick={() => {
-              signIn(provider.id);
-            }}
+            onClick={() => handleSignIn(provider)}
+            disabled={loading}
           >
-            Sign in with {provider.name}
+            {loading ? 'Signing In...' : `Sign in with ${provider.name}`}
           </button>
         ))}
     </>
