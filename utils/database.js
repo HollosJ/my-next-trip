@@ -8,6 +8,7 @@ export const connectToDB = async () => {
 
   if (isConnected) {
     console.warn('MDB Already Connected.');
+    return;
   }
 
   try {
