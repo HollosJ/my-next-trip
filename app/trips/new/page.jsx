@@ -2,12 +2,16 @@
 
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from "next/navigation";
 import TripForm from '@/components/TripForm';
 
 const NewTrip = () => {
   const router = useRouter();
   const { data: session } = useSession();
+
+  if (!session || !session?.user) {
+    redirect("/api/auth/signin");
+  }
 
   const [submitting, setSubmitting] = useState(false);
   const [trip, setTrip] = useState({

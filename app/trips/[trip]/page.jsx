@@ -1,13 +1,6 @@
 'use client';
 
-import Heading from '@/components/Heading';
-import Protected from '@/components/Protected';
-import DateColumns from '@/components/DateColumns';
-import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
-import { ClockIcon } from '@heroicons/react/24/solid';
-import Skeleton from '@/components/Skeleton';
+import { redirect, useRouter } from "next/navigation";
 
 const Trip = ({ params }) => {
   const { data: session } = useSession();
@@ -15,6 +8,10 @@ const Trip = ({ params }) => {
   const [trip, setTrip] = useState({});
   const [loading, setLoading] = useState(true);
   const [daysTill, setDaysTill] = useState(0);
+
+  if (!session || !session?.user) {
+    redirect("/api/auth/signin");
+  }
 
   useEffect(() => {
     if (session?.user.id) fetchTrip();
