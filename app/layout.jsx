@@ -1,17 +1,20 @@
-import Nav from '@/components/Nav';
-import Provider from '@/components/Provider';
-import '@/styles/main.css';
+import Nav from "@/components/Nav";
+import SessionProvider from "@/components/Provider";
+import { getServerSession } from "next-auth";
+import "@/styles/main.css";
 
-import { Bricolage_Grotesque } from 'next/font/google';
+import { Bricolage_Grotesque } from "next/font/google";
 
-const bricolage_grotesque = Bricolage_Grotesque({ subsets: ['latin'] });
+const bricolage_grotesque = Bricolage_Grotesque({ subsets: ["latin"] });
 
 export const metadata = {
-  title: 'My Next Trip',
-  description: 'Trip Planning Web Application',
+  title: "My Next Trip",
+  description: "Trip Planning Web Application",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const session = await getServerSession();
+
   return (
     <html lang="en">
       <head>
@@ -19,13 +22,13 @@ export default function RootLayout({ children }) {
       </head>
 
       <body
-        className={`${bricolage_grotesque.className} bg-slate-50 bg-no-repeat min-h-screen`}
+        className={`${bricolage_grotesque.className} bg-slate-50 bg-no-repeat min-h-screen overflow-x-hidden`}
       >
-        <Provider>
+        <SessionProvider session={session}>
           <Nav />
 
           <main className="my-8">{children}</main>
-        </Provider>
+        </SessionProvider>
       </body>
     </html>
   );

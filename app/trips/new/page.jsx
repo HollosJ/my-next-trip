@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useSession } from 'next-auth/react';
+import { useState } from "react";
+import { useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
-import TripForm from '@/components/TripForm';
+import TripForm from "@/components/TripForm";
 
 const NewTrip = () => {
   const router = useRouter();
@@ -15,9 +15,9 @@ const NewTrip = () => {
 
   const [submitting, setSubmitting] = useState(false);
   const [trip, setTrip] = useState({
-    location: '',
-    startDate: '',
-    endDate: '',
+    location: "",
+    startDate: "",
+    endDate: "",
     itinerary: [],
   });
 
@@ -25,13 +25,13 @@ const NewTrip = () => {
     e.preventDefault();
 
     if (!trip.location) {
-      alert('Please select a country from the list...');
+      alert("Please select a country from the list...");
 
       return;
     }
 
     if (trip.startDate > trip.endDate) {
-      alert('Leaving date must be after arrival date...');
+      alert("Leaving date must be after arrival date...");
 
       return;
     }
@@ -40,8 +40,8 @@ const NewTrip = () => {
     setSubmitting(true);
 
     try {
-      const response = await fetch('/api/trip/new', {
-        method: 'POST',
+      const response = await fetch("/api/trip/new", {
+        method: "POST",
         body: JSON.stringify({
           location: trip.location,
           userID: session?.user.id,
@@ -51,7 +51,7 @@ const NewTrip = () => {
       });
 
       if (response.ok) {
-        router.push('/trips');
+        router.push("/trips");
       }
     } catch (error) {
       console.error(error);
@@ -62,17 +62,13 @@ const NewTrip = () => {
 
   return (
     <div className="container my-8 md:max-w-screen-md">
-      {session?.user ? (
-        <TripForm
-          type="Create"
-          trip={trip}
-          setTrip={setTrip}
-          submitting={submitting}
-          handleSubmit={createTrip}
-        />
-      ) : (
-        'Please sign in'
-      )}
+      <TripForm
+        type="Create"
+        trip={trip}
+        setTrip={setTrip}
+        submitting={submitting}
+        handleSubmit={createTrip}
+      />
     </div>
   );
 };

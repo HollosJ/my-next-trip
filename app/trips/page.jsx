@@ -1,3 +1,4 @@
+import TripsGrid from "@/components/TripsGrid";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
