@@ -24,11 +24,13 @@ export default async function RootLayout({ children }) {
       <body
         className={`${bricolage_grotesque.className} bg-slate-50 bg-no-repeat min-h-screen overflow-x-hidden`}
       >
-        <SessionProvider session={session}>
-          <Nav />
+        <div className="overflow-x-hidden">
+          <SessionProvider>
+            <Nav />
 
-          <main className="my-8">{children}</main>
-        </SessionProvider>
+            <main className="my-8">{children}</main>
+          </SessionProvider>
+        </div>
       </body>
     </html>
   );
