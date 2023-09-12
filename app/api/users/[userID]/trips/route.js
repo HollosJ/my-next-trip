@@ -1,5 +1,5 @@
-import Trip from '@/models/trip';
-import { connectToDB } from '@/utils/database';
+import Trip from "@/models/trip";
+import { connectToDB } from "@/utils/database";
 
 export const GET = async (request, { params }) => {
   try {
@@ -7,7 +7,7 @@ export const GET = async (request, { params }) => {
 
     const trips = await Trip.find({
       user: params.userID,
-    }).populate('user');
+    });
 
     return new Response(JSON.stringify(trips), {
       status: 200,
