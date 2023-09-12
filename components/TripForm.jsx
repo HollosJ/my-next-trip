@@ -89,7 +89,7 @@ const Form = ({ type }) => {
             </select>
           </div>
 
-          <div className="flex items-center w-full gap-4">
+          {/* <div className="flex items-center w-full gap-4">
             <hr className="flex-1" />
 
             <span>OR</span>
@@ -97,7 +97,7 @@ const Form = ({ type }) => {
             <hr className="flex-1" />
           </div>
 
-          <input className="input" type="text" />
+          <input className="input" type="text" /> */}
         </div>
 
         <div className="grid gap-8 md:gap-4 md:grid-cols-2">
