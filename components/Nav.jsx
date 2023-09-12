@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
-import AuthButton from "./AuthButton";
-import Link from "next/link";
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
+import AuthButton from './AuthButton';
+import Link from 'next/link';
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -21,10 +21,10 @@ const Nav = () => {
             className="text-xl font-bold md:text-3xl whitespace-nowrap"
             href="/"
           >
-            My{" "}
+            My{' '}
             <span className="text-transparent bg-clip-text gradient--green">
               Next
-            </span>{" "}
+            </span>{' '}
             Trip
           </Link>
 
@@ -41,15 +41,15 @@ const Nav = () => {
 
       {/* Dropdown */}
       <div
-        className={`absolute transition-all z-10 grid gap-4 p-4 bg-white shadow w-full duration-300 content-start max-h-screen sm:max-w-xs top-full ${
-          menuOpen ? "right-0" : "-right-full"
+        className={`absolute transition-all z-10 grid gap-4 p-4 bg-white w-full duration-300 content-start max-h-screen sm:max-w-xs top-full ${
+          menuOpen ? 'right-0' : '-right-full'
         }`}
       >
         {session?.user && (
           <>
             <Link
               className="button"
-              href={"/trips"}
+              href={'/trips'}
               onClick={() => {
                 setMenuOpen(false);
               }}
