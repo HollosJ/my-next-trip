@@ -2,20 +2,17 @@
 
 import Link from 'next/link';
 import Heading from './Heading';
-import { countries } from '@/public/countries';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { PencilSquareIcon } from '@heroicons/react/24/solid';
 
 const Form = ({ type }) => {
   const { data: session } = useSession();
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
-  const [usingCustomLocation, setUsingCustomLocation] = useState(false);
   const [trip, setTrip] = useState({
     location: '',
-    startDate: '',
+    startDate: new Date(),
     endDate: '',
     itinerary: [],
   });
@@ -69,53 +66,20 @@ const Form = ({ type }) => {
           <div className="grid">
             <label htmlFor="location">Where are you going?</label>
 
-            {usingCustomLocation ? (
-              <input
-                className="input"
-                type="text"
-                name="location"
-                id="location"
-                ref={(input) => input && input.focus()}
-                value={trip.location}
-                onChange={(e) =>
-                  setTrip({
-                    ...trip,
-                    location: e.target.value,
-                  })
-                }
-              />
-            ) : (
-              <div className="flex gap-2">
-                <select
-                  className="flex-1 input"
-                  name="location"
-                  id="location"
-                  value={trip.location}
-                  onChange={(e) =>
-                    setTrip({
-                      ...trip,
-                      location: e.target.value,
-                    })
-                  }
-                >
-                  <option value="" disabled>
-                    Please select...
-                  </option>
-
-                  {countries.map((country) => (
-                    <option key={country}>{country}</option>
-                  ))}
-                </select>
-
-                <button
-                  className="button button--primary"
-                  type="button"
-                  onClick={() => setUsingCustomLocation(true)}
-                >
-                  <PencilSquareIcon className="w-6 h-6" />
-                </button>
-              </div>
-            )}
+            <input
+              className="input"
+              type="text"
+              name="location"
+              id="location"
+              placeholder="Tromsø, Norway"
+              value={trip.location}
+              onChange={(e) =>
+                setTrip({
+                  ...trip,
+                  location: e.target.value,
+                })
+              }
+            />
           </div>
         </div>
 
