@@ -6,11 +6,13 @@ import { countries } from '@/public/countries';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { PencilSquareIcon } from '@heroicons/react/24/solid';
 
 const Form = ({ type }) => {
   const { data: session } = useSession();
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
+  const [usingCustomLocation, setUsingCustomLocation] = useState(false);
   const [trip, setTrip] = useState({
     location: '',
     startDate: '',
@@ -22,7 +24,7 @@ const Form = ({ type }) => {
     e.preventDefault();
 
     if (!trip.location) {
-      alert('Please select a country from the list...');
+      alert('Please enter a location...');
 
       return;
     }
@@ -67,37 +69,54 @@ const Form = ({ type }) => {
           <div className="grid">
             <label htmlFor="location">Where are you going?</label>
 
-            <select
-              className="input"
-              name="location"
-              id="location"
-              value={trip.location}
-              onChange={(e) =>
-                setTrip({
-                  ...trip,
-                  location: e.target.value,
-                })
-              }
-            >
-              <option value="" disabled>
-                Please select...
-              </option>
+            {usingCustomLocation ? (
+              <input
+                className="input"
+                type="text"
+                name="location"
+                id="location"
+                ref={(input) => input && input.focus()}
+                value={trip.location}
+                onChange={(e) =>
+                  setTrip({
+                    ...trip,
+                    location: e.target.value,
+                  })
+                }
+              />
+            ) : (
+              <div className="flex gap-2">
+                <select
+                  className="flex-1 input"
+                  name="location"
+                  id="location"
+                  value={trip.location}
+                  onChange={(e) =>
+                    setTrip({
+                      ...trip,
+                      location: e.target.value,
+                    })
+                  }
+                >
+                  <option value="" disabled>
+                    Please select...
+                  </option>
 
-              {countries.map((country) => (
-                <option key={country}>{country}</option>
-              ))}
-            </select>
+                  {countries.map((country) => (
+                    <option key={country}>{country}</option>
+                  ))}
+                </select>
+
+                <button
+                  className="button button--primary"
+                  type="button"
+                  onClick={() => setUsingCustomLocation(true)}
+                >
+                  <PencilSquareIcon className="w-6 h-6" />
+                </button>
+              </div>
+            )}
           </div>
-
-          {/* <div className="flex items-center w-full gap-4">
-            <hr className="flex-1" />
-
-            <span>OR</span>
-
-            <hr className="flex-1" />
-          </div>
-
-          <input className="input" type="text" /> */}
         </div>
 
         <div className="grid gap-8 md:gap-4 md:grid-cols-2">
