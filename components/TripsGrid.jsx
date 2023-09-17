@@ -28,8 +28,8 @@ const TripsGrid = () => {
       setLoading(false);
     };
 
-    if (session?.user) fetchTrips();
-  }, [session?.user.id]);
+    if (session?.user.id) fetchTrips();
+  }, [session]);
 
   return (
     <div className="grid gap-8">
@@ -37,7 +37,7 @@ const TripsGrid = () => {
 
       <div className="grid gap-4">
         {loading ? (
-          "Loading your trips..."
+          'Loading your trips...'
         ) : trips.length ? (
           <div className="grid gap-4">
             <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
@@ -60,7 +60,7 @@ const TripsGrid = () => {
       </div>
 
       {!loading && (
-        <Link className="button button--primary" href={"/trips/new"}>
+        <Link className="button button--primary" href={'/trips/new'}>
           Add New
         </Link>
       )}
