@@ -1,12 +1,12 @@
-import TripsGrid from "@/components/TripsGrid";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
+import TripsGrid from '@/components/TripsGrid';
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
 
 const Trips = async () => {
   const session = await getServerSession();
 
   if (!session || !session?.user) {
-    redirect("/api/auth/signin");
+    redirect('/api/auth/signin');
   }
 
   return (

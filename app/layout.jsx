@@ -1,15 +1,15 @@
-import Nav from "@/components/Nav";
-import SessionProvider from "@/components/Provider";
-import { getServerSession } from "next-auth";
-import "@/styles/main.css";
+import Nav from '@/components/Nav';
+import SessionProvider from '@/components/Provider';
+import { getServerSession } from 'next-auth';
+import '@/styles/main.css';
 
-import { Bricolage_Grotesque } from "next/font/google";
+import { Bricolage_Grotesque } from 'next/font/google';
 
-const bricolage_grotesque = Bricolage_Grotesque({ subsets: ["latin"] });
+const bricolage_grotesque = Bricolage_Grotesque({ subsets: ['latin'] });
 
 export const metadata = {
-  title: "My Next Trip",
-  description: "Trip Planning Web Application",
+  title: 'My Next Trip',
+  description: 'Trip Planning Web Application',
 };
 
 export default async function RootLayout({ children }) {
