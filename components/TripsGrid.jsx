@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useSession } from "next-auth/react";
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import Heading from "./Heading";
+import { useSession } from 'next-auth/react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Heading from './Heading';
 
-import { formatDate } from "@/utils/helpers";
+import { formatDate } from '@/utils/helpers';
 
 const TripsGrid = () => {
   const { data: session } = useSession();
