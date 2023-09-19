@@ -7,30 +7,7 @@ import Heading from './Heading';
 
 import { formatDate } from '@/utils/helpers';
 
-const TripsGrid = () => {
-  const { data: session } = useSession();
-  const [trips, setTrips] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchTrips = async () => {
-      const response = await fetch(`/api/users/${session?.user.id}/trips`);
-
-      const data = await response.json();
-
-      const dataSorted = data.sort(function (a, b) {
-        // Turn your strings into dates, and then subtract them
-        // to get a value that is either negative, positive, or zero.
-        return new Date(a.startDate) - new Date(b.startDate);
-      });
-
-      setTrips(dataSorted);
-      setLoading(false);
-    };
-
-    if (session?.user.id) fetchTrips();
-  }, [session]);
-
+const TripsGrid = ({ trips, loading }) => {
   return (
     <div className="grid gap-8">
       <Heading>My Trips</Heading>

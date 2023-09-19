@@ -1,67 +1,25 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
 import Skeleton from './Skeleton';
 import Heading from './Heading';
 import DateColumns from './DateColumns';
-import { useSession } from 'next-auth/react';
 import { ClockIcon } from '@heroicons/react/24/solid';
+import Link from 'next/link';
 
-const Trip = ({ params }) => {
-  const { data: session } = useSession();
-  const router = useRouter();
-  const [trip, setTrip] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [daysTill, setDaysTill] = useState(0);
-
-  useEffect(() => {
-    if (session?.user.id) fetchTrip();
-  }, [session?.user.id]);
-
-  const fetchTrip = async () => {
-    const response = await fetch(
-      `/api/users/${session?.user.id}/trips/${params.trip}`
-    );
-    const data = await response.json();
-
-    setTrip(data);
-    setLoading(false);
-
-    const today = new Date();
-    const tripDate = new Date(data.startDate);
-
-    const difference =
-      (tripDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
-
-    setDaysTill(Math.round(difference));
-  };
-
-  const deleteTrip = async () => {
-    if (!window.confirm('Are you sure you want to delete this trip?')) return;
-
-    try {
-      const response = await fetch(
-        `/api/users/${session?.user.id}/trips/${params.trip}`,
-        {
-          method: 'DELETE',
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      // Send user back to their trips page
-      router.push('/trips');
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+const Trip = ({ trip, setTrip, loading, error, daysTill, deleteTrip }) => {
   return (
     <div className="container px-4 my-8">
-      {loading ? (
+      {error ? (
+        <div className="grid gap-4 justify-items-start">
+          <span className="font-bold text-red-500">
+            {error}, this trip may have been deleted.
+          </span>
+
+          <Link className="button button--primary" href="/trips">
+            My Trips
+          </Link>
+        </div>
+      ) : loading ? (
         <div className="flex flex-wrap items-center justify-between gap-4">
           <Skeleton className={'h-10 w-64'} />
 
