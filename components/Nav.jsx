@@ -11,6 +11,16 @@ const Nav = () => {
   const { data: session } = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  function openMenu() {
+    setMenuOpen(true);
+    document.body.style.overflowY = 'hidden';
+  }
+
+  function closeMenu() {
+    setMenuOpen(false);
+    document.body.style.overflowY = 'auto';
+  }
+
   return (
     <nav className="relative z-50 bg-white shadow">
       <div className="container flex items-center justify-between py-2">
@@ -27,7 +37,7 @@ const Nav = () => {
         </Link>
 
         {/* Nav toggle */}
-        <button onClick={() => setMenuOpen(true)}>
+        <button onClick={openMenu}>
           <Bars3Icon className="w-6 h-6" />
         </button>
       </div>
@@ -41,7 +51,7 @@ const Nav = () => {
               ? 'bg-slate-300/25 backdrop-blur-[2px]'
               : 'pointer-events-none'
           }`}
-          onClick={() => setMenuOpen(false)}
+          onClick={closeMenu}
         ></button>
 
         <aside
@@ -49,20 +59,16 @@ const Nav = () => {
             menuOpen ? 'right-0' : '-right-full'
           }`}
         >
-          <XMarkIcon
-            className="w-6 h-6 justify-self-end"
-            onClick={() => setMenuOpen((prev) => !prev)}
-          />
+          <button
+            className="cursor-pointer justify-self-end"
+            onClick={closeMenu}
+          >
+            <XMarkIcon className="w-6 h-6" />
+          </button>
 
           <div className="grid items-start gap-2">
             {session?.user && (
-              <Link
-                className="button"
-                href={'/trips'}
-                onClick={() => {
-                  setMenuOpen(false);
-                }}
-              >
+              <Link className="button" href={'/trips'} onClick={closeMenu}>
                 My Trips
               </Link>
             )}
