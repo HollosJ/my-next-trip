@@ -11,11 +11,17 @@ export const GET = async (request, { params }) => {
       _id: params.tripID,
     });
 
+    if (!trip) {
+      return new Response('Trip not found', { status: 404 });
+    }
+
     return new Response(JSON.stringify(trip), {
       status: 200,
     });
   } catch (error) {
-    return new Response('Failed to fetch trip', { status: 500 });
+    return new Response('Failed to fetch trip:' + error.message, {
+      status: 500,
+    });
   }
 };
 
