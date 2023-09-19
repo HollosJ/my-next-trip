@@ -79,7 +79,7 @@ const DateColumn = ({ trip, day, setTrip }) => {
   };
 
   return (
-    <div className="inline-grid content-start gap-4 p-4 text-left bg-gray-300 rounded min-w-[320px] max-w-[320px] shadow">
+    <div className="inline-grid content-start overflow-y-auto no-scrollbar gap-4 text-left rounded min-w-[300px] max-w-[300px]">
       {/* Formatted date */}
       <h3 className="text-lg font-bold">{formatDate(new Date(day.date))}</h3>
 
@@ -103,10 +103,7 @@ const DateColumn = ({ trip, day, setTrip }) => {
           setFormShowing={setFormShowing}
         />
       ) : (
-        <button
-          className="button button--primary"
-          onClick={() => setFormShowing(true)}
-        >
+        <button className="button" onClick={() => setFormShowing(true)}>
           Add New
         </button>
       )}

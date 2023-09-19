@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const Trip = ({ trip, setTrip, loading, error, daysTill, deleteTrip }) => {
   return (
-    <div className="container px-4 my-8">
+    <div className="">
       {error ? (
         <div className="grid gap-4 justify-items-start">
           <span className="font-bold text-red-500">
@@ -19,34 +19,44 @@ const Trip = ({ trip, setTrip, loading, error, daysTill, deleteTrip }) => {
             My Trips
           </Link>
         </div>
-      ) : loading ? (
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <Skeleton className={'h-10 w-64'} />
-
-          <Skeleton className={'h-10 w-48'} />
-        </div>
       ) : (
-        <>
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <Heading>Your Trip To {trip.location}</Heading>
+        <div className="flex flex-col">
+          {/* Dashboard header */}
+          <div className="text-white bg-slate-300">
+            <div className="container flex flex-wrap items-center justify-between gap-4 p-4">
+              <h1 className="flex flex-wrap items-center gap-2 text-2xl font-bold md:text-4xl">
+                Your Trip To{' '}
+                {loading ? (
+                  <div className="h-8 rounded w-36 bg-slate-200 animate-pulse"></div>
+                ) : (
+                  <span className="text-black">{trip.location}</span>
+                )}
+              </h1>
 
-            <div className="flex gap-4">
-              {daysTill > 0 && (
-                <div className="flex items-center gap-2 p-2 text-white rounded bg-gradient-to-tr from-green-700 to-green-500">
-                  <ClockIcon className="w-6 h-6" />
+              <div className="flex flex-wrap gap-4">
+                {daysTill > 0 && !loading && (
+                  <div className="flex items-center gap-2 p-2 text-black bg-white rounded">
+                    <ClockIcon className="w-6 h-6" />
 
-                  <p>Only {daysTill} days away!</p>
-                </div>
-              )}
+                    <p>Only {daysTill} days away!</p>
+                  </div>
+                )}
 
-              <button className="button button--danger" onClick={deleteTrip}>
-                Delete
-              </button>
+                {!loading && (
+                  <button
+                    className="button button--danger"
+                    onClick={deleteTrip}
+                  >
+                    Delete
+                  </button>
+                )}
+              </div>
             </div>
           </div>
 
+          {/* Trip days */}
           <DateColumns trip={trip} setTrip={setTrip} />
-        </>
+        </div>
       )}
     </div>
   );

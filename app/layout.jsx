@@ -28,7 +28,7 @@ export default async function RootLayout({ children }) {
           <SessionProvider>
             <Nav />
 
-            <main className="my-8">{children}</main>
+            <main>{children}</main>
           </SessionProvider>
         </div>
       </body>

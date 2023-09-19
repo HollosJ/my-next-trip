@@ -23,8 +23,12 @@ const Activity = ({ activity, onSave, handleDeleteActivity }) => {
           {/* Activity content */}
           <div className="grid flex-1 p-4">
             <h3 className="text-lg font-bold">{activity.title}</h3>
+
             {activity.location && <span>{activity.location}</span>}
-            {activity.notes && <p className="opacity-75">"{activity.notes}"</p>}
+
+            {activity.notes && (
+              <p className="break-all opacity-75">"{activity.notes}"</p>
+            )}
           </div>
 
           {/* Actions */}
@@ -37,7 +41,7 @@ const Activity = ({ activity, onSave, handleDeleteActivity }) => {
                     'Are you sure you want to delete this activity?'
                   )
                 )
-                  handleDeleteActivity(activity.id);
+                  handleDeleteActivity(activity._id);
               }}
             >
               <TrashIcon className="w-6 h-6 transition text-slate-300 hover:brightness-90" />
