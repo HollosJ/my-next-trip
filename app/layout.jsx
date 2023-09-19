@@ -22,9 +22,9 @@ export default async function RootLayout({ children }) {
       </head>
 
       <body
-        className={`${bricolage_grotesque.className} bg-slate-50 bg-no-repeat min-h-screen overflow-x-hidden`}
+        className={`${bricolage_grotesque.className} bg-slate-50 bg-no-repeat overflow-x-hidden`}
       >
-        <div className="overflow-x-hidden">
+        <div className="min-h-screen overflow-x-hidden">
           <SessionProvider>
             <Nav />
 
