@@ -1,18 +1,27 @@
-"use client";
+'use client';
 
-import { useSession } from "next-auth/react";
-import Link from "next/link";
-import { signOut } from "next-auth/react";
-import Image from "next/image";
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
+import { signOut } from 'next-auth/react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const AuthButton = () => {
   const { data: session } = useSession();
+  const router = useRouter();
 
   return (
     <>
       {session?.user ? (
-        <button className="flex items-center gap-2 button" onClick={signOut}>
-          Sign Out{" "}
+        <button
+          className="flex items-center gap-2 button"
+          onClick={() => {
+            signOut({ redirect: false });
+
+            router.push('/');
+          }}
+        >
+          Sign Out{' '}
           <Image
             className="rounded-full"
             src={session?.user.image}
@@ -22,7 +31,7 @@ const AuthButton = () => {
           />
         </button>
       ) : (
-        <Link className="button button--primary" href={"/api/auth/signin"}>
+        <Link className="button button--primary" href={'/api/auth/signin'}>
           Sign In
         </Link>
       )}
