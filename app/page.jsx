@@ -2,13 +2,9 @@ import Image from 'next/image';
 import HeroImage from '@/public/images/hero-image.svg';
 import Link from 'next/link';
 import { getServerSession } from 'next-auth';
-import { redirect } from 'next/navigation';
+import AuthButton from '@/components/AuthButton';
 
 export default async function Home() {
-  const session = await getServerSession();
-
-  if (session?.user) redirect('/trips');
-
   return (
     <>
       {/* Hero section */}
@@ -23,18 +19,14 @@ export default async function Home() {
               Travel Planning Companion!
             </h1>
 
-            {!session?.user && (
-              <Link className="button button--primary" href="/api/auth/signin">
-                Get Started
-              </Link>
-            )}
+            <AuthButton />
           </div>
 
           <Image
             src={HeroImage}
             width={640}
             height={424}
-            alt="Map with travel related items atop"
+            alt="Illustration of a lady with a suitcase next to a tree"
           />
         </div>
       </div>
