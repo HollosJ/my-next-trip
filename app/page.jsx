@@ -1,7 +1,5 @@
 import Image from 'next/image';
 import HeroImage from '@/public/images/hero-image.svg';
-import Link from 'next/link';
-import { getServerSession } from 'next-auth';
 import AuthButton from '@/components/AuthButton';
 
 export default async function Home() {
