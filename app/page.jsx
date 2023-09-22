@@ -25,6 +25,7 @@ export default async function Home() {
             width={640}
             height={424}
             alt="Illustration of a lady with a suitcase next to a tree"
+            priority
           />
         </div>
       </div>
