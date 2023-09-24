@@ -26,7 +26,9 @@ const Page = ({ params }) => {
     );
 
     if (!response.ok) {
-      setError(response.statusText);
+      setLoading(false);
+      setError(await response.text());
+
       return;
     }
 

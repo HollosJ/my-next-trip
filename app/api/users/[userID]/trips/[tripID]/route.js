@@ -12,14 +12,16 @@ export const GET = async (request, { params }) => {
     });
 
     if (!trip) {
-      return new Response('Trip not found', { status: 404 });
+      return new Response('Trip not found - it may have been deleted.', {
+        status: 404,
+      });
     }
 
     return new Response(JSON.stringify(trip), {
       status: 200,
     });
   } catch (error) {
-    return new Response('Failed to fetch trip:' + error.message, {
+    return new Response('Failed to fetch trip', {
       status: 500,
     });
   }

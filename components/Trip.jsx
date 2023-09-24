@@ -1,19 +1,28 @@
 'use client';
 
-import Skeleton from './Skeleton';
-import Heading from './Heading';
 import DateColumns from './DateColumns';
 import { ClockIcon } from '@heroicons/react/24/solid';
+import ErrorImage from '@/public/images/error-image.svg';
 import Link from 'next/link';
+import Image from 'next/image';
+import Heading from './Heading';
 
 const Trip = ({ trip, setTrip, loading, error, daysTill, deleteTrip }) => {
   return (
     <div className="">
       {error ? (
-        <div className="grid gap-4 justify-items-start">
-          <span className="font-bold text-red-500">
-            {error}, this trip may have been deleted.
-          </span>
+        <div className="container grid max-w-sm gap-4 my-8 text-red-500 justify-items-center">
+          <Image
+            src={ErrorImage}
+            alt="Error image"
+            width={1120}
+            height={700}
+            priority
+          />
+
+          <Heading>Oops!</Heading>
+
+          <span>{error}</span>
 
           <Link className="button button--primary" href="/trips">
             My Trips
