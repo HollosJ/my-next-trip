@@ -6,7 +6,7 @@ import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-const AuthButton = () => {
+const AuthButton = ({ onClick }) => {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -17,6 +17,9 @@ const AuthButton = () => {
           className="flex items-center gap-2 button"
           onClick={() => {
             signOut({ redirect: false });
+
+            // If onclick function is passed, call it
+            if (onClick) onClick();
 
             router.push('/');
           }}
@@ -31,7 +34,11 @@ const AuthButton = () => {
           />
         </button>
       ) : (
-        <Link className="button button--primary" href={'/api/auth/signin'}>
+        <Link
+          className="button button--primary"
+          onClick={onClick ? onClick : null}
+          href={'/api/auth/signin'}
+        >
           Sign In
         </Link>
       )}

@@ -73,7 +73,7 @@ const Nav = () => {
               </Link>
             )}
 
-            <AuthButton />
+            <AuthButton onClick={closeMenu} />
           </div>
         </aside>
       </div>
