@@ -6,77 +6,13 @@ import ActivityForm from './ActivityForm';
 import { formatDate } from '@/utils/helpers';
 import { useState } from 'react';
 
-const DateColumn = ({ trip, day, setTrip }) => {
-  const { data: session } = useSession();
+const DateColumn = ({
+  day,
+  handleAddActivity,
+  handleEditActivity,
+  handleDeleteActivity,
+}) => {
   const [formShowing, setFormShowing] = useState(false);
-
-  const handleEditActivity = (editedActivity) => {
-    // Handle the logic to update the edited activity
-    const editedActivityIndex = day.activities.findIndex(
-      (activity) => activity._id === editedActivity._id
-    );
-
-    day.activities[editedActivityIndex] = editedActivity;
-
-    const tripDateIndex = trip.itinerary.indexOf(
-      trip.itinerary.find((date) => date._id === day._id)
-    );
-
-    trip.itinerary[tripDateIndex].activities[editedActivityIndex] =
-      editedActivity;
-
-    updateTrip(trip);
-  };
-
-  const handleAddActivity = (newActivity) => {
-    // Add the new activity to the date's activities array
-    const updatedActivities = [...day.activities, newActivity];
-
-    // Find day
-    const tripDateIndex = trip.itinerary.indexOf(
-      trip.itinerary.find((date) => date._id === day._id)
-    );
-
-    trip.itinerary[tripDateIndex].activities = updatedActivities;
-
-    updateTrip(trip);
-  };
-
-  const handleDeleteActivity = (activityID) => {
-    // Find the activity in the day
-    let activityIndex = day.activities.indexOf(
-      day.activities.find((activity) => activity._id === activityID)
-    );
-
-    let tripCopy = { ...trip };
-
-    tripCopy.itinerary
-      .find((date) => date._id === day._id)
-      .activities.splice(activityIndex, 1);
-
-    updateTrip(tripCopy);
-  };
-
-  const updateTrip = async (newTrip) => {
-    // Update database with PATCH request
-    try {
-      const response = await fetch(
-        `/api/users/${session?.user.id}/trips/${newTrip._id}`,
-        { method: 'PATCH', body: JSON.stringify(trip) }
-      );
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok...');
-      }
-
-      const data = await response.json();
-
-      // Update state with new trip
-      setTrip(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <div className="inline-grid content-start overflow-y-auto no-scrollbar gap-4 text-left rounded min-w-[300px] max-w-[300px]">
@@ -89,6 +25,7 @@ const DateColumn = ({ trip, day, setTrip }) => {
           {day.activities.map((activity, key) => (
             <Activity
               key={key}
+              day={day}
               activity={activity}
               handleDeleteActivity={handleDeleteActivity}
               onSave={handleEditActivity}
@@ -100,6 +37,7 @@ const DateColumn = ({ trip, day, setTrip }) => {
       {formShowing ? (
         <ActivityForm
           onSave={handleAddActivity}
+          day={day}
           setFormShowing={setFormShowing}
         />
       ) : (

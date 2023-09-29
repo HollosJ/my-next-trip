@@ -2,11 +2,11 @@ import { useState } from 'react';
 import ActivityForm from './ActivityForm';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 
-const Activity = ({ activity, onSave, handleDeleteActivity }) => {
+const Activity = ({ activity, day, onSave, handleDeleteActivity }) => {
   const [formShowing, setFormShowing] = useState(false);
 
-  const handleSave = (editedActivity) => {
-    onSave(editedActivity);
+  const handleSave = (day, editedActivity) => {
+    onSave(day, editedActivity);
   };
 
   return (
@@ -17,6 +17,7 @@ const Activity = ({ activity, onSave, handleDeleteActivity }) => {
           <div className="grid p-4">
             <ActivityForm
               activity={activity}
+              day={day}
               onSave={handleSave}
               setFormShowing={setFormShowing}
             />
@@ -44,7 +45,7 @@ const Activity = ({ activity, onSave, handleDeleteActivity }) => {
                       'Are you sure you want to delete this activity?'
                     )
                   )
-                    handleDeleteActivity(activity._id);
+                    handleDeleteActivity(day, activity._id);
                 }}
               >
                 <TrashIcon className="w-6 h-6 transition text-slate-300 hover:brightness-90" />
