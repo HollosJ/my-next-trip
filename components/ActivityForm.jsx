@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 const ActivityForm = ({ activity, day, onSave, setFormShowing }) => {
-  console.log(day);
-
   const fieldIDs = {
     title: uuid(),
     location: uuid(),
