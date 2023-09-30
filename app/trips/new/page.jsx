@@ -11,7 +11,7 @@ const NewTrip = async () => {
 
   return (
     <div className="container my-8 md:max-w-screen-md">
-      <TripForm type="Create" />
+      <TripForm />
     </div>
   );
 };
