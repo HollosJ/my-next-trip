@@ -14,7 +14,6 @@ const Form = ({ type }) => {
     location: '',
     startDate: new Date().toISOString().split('T')[0],
     endDate: '',
-    itinerary: [],
   });
 
   const createTrip = async (e) => {
