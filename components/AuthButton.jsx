@@ -13,26 +13,35 @@ const AuthButton = ({ onClick }) => {
   return (
     <>
       {session?.user ? (
-        <button
-          className="flex items-center gap-2 button"
-          onClick={() => {
-            signOut({ redirect: false });
+        <>
+          <Link
+            className="flex items-center gap-2 button button--primary"
+            href={'/trips'}
+          >
+            My Trips
+          </Link>
 
-            // If onclick function is passed, call it
-            if (onClick) onClick();
+          <button
+            className="flex items-center gap-2 button"
+            onClick={() => {
+              signOut({ redirect: false });
 
-            router.push('/');
-          }}
-        >
-          Sign Out{' '}
-          <Image
-            className="rounded-full"
-            src={session?.user.image}
-            alt="User Thumbnail"
-            width={30}
-            height={30}
-          />
-        </button>
+              // If onclick function is passed, call it
+              if (onClick) onClick();
+
+              router.push('/');
+            }}
+          >
+            Sign Out{' '}
+            <Image
+              className="rounded-full"
+              src={session?.user.image}
+              alt="User Thumbnail"
+              width={16}
+              height={16}
+            />
+          </button>
+        </>
       ) : (
         <Link
           className="button button--primary"

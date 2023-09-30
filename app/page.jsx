@@ -17,7 +17,9 @@ export default async function Home() {
               Travel Planning Companion!
             </h1>
 
-            <AuthButton />
+            <div className="flex flex-wrap gap-2">
+              <AuthButton />
+            </div>
           </div>
 
           <Image
