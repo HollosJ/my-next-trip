@@ -12,7 +12,7 @@ const Form = ({ type }) => {
   const [submitting, setSubmitting] = useState(false);
   const [trip, setTrip] = useState({
     location: '',
-    startDate: new Date(),
+    startDate: new Date().toISOString().split('T')[0],
     endDate: '',
     itinerary: [],
   });
@@ -108,6 +108,7 @@ const Form = ({ type }) => {
               type="date"
               id="end_date"
               value={trip.endDate}
+              min={trip.startDate || false}
               required
               onChange={(e) =>
                 setTrip({
