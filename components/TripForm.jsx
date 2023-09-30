@@ -20,17 +20,10 @@ const Form = ({ type }) => {
   const createTrip = async (e) => {
     e.preventDefault();
 
-    if (!trip.location) {
-      alert('Please enter a location...');
+    if (!trip.location) return alert('Please enter a location.');
 
-      return;
-    }
-
-    if (trip.startDate > trip.endDate) {
-      alert('Leaving date must be after arrival date...');
-
-      return;
-    }
+    if (trip.startDate > trip.endDate)
+      return alert('Leaving date must be after arrival date.');
 
     // Set 'loading' state so we can disable submit button once pressed
     setSubmitting(true);
