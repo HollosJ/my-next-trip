@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
-const Form = ({ type }) => {
+const Form = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
@@ -50,7 +50,7 @@ const Form = ({ type }) => {
 
   return (
     <section className="grid gap-8 p-4 bg-white rounded shadow-md">
-      <Heading>{type} Trip</Heading>
+      <Heading>Create Trip</Heading>
 
       <form className="grid gap-8 whitespace-normal" onSubmit={createTrip}>
         {/* Location */}
@@ -126,7 +126,7 @@ const Form = ({ type }) => {
           </Link>
 
           <button className="button button--primary" disabled={submitting}>
-            {submitting ? 'Submitting...' : type}
+            {submitting ? 'Submitting...' : 'Create'}
           </button>
         </div>
       </form>
