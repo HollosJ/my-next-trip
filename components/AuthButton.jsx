@@ -1,8 +1,7 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
-import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -17,6 +16,7 @@ const AuthButton = ({ onClick }) => {
           <Link
             className="flex items-center gap-2 button button--primary"
             href={'/trips'}
+            onClick={onClick ? onClick : null}
           >
             My Trips
           </Link>

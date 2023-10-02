@@ -3,7 +3,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
+import { Bars3Icon, PlusIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import AuthButton from './AuthButton';
 import Link from 'next/link';
 
@@ -36,10 +36,23 @@ const Nav = () => {
           Trip
         </Link>
 
-        {/* Nav toggle */}
-        <button onClick={openMenu}>
-          <Bars3Icon className="w-6 h-6" />
-        </button>
+        {/* Buttons */}
+        <div className="flex items-center gap-4">
+          {/* Add new trip */}
+          {session?.user?.id && (
+            <Link
+              className="flex items-center gap-2 button button--primary"
+              href="/trips/new"
+            >
+              New <PlusIcon width="20" height="20" />
+            </Link>
+          )}
+
+          {/* Nav toggle */}
+          <button className="" onClick={openMenu}>
+            <Bars3Icon className="w-6 h-6" />
+          </button>
+        </div>
       </div>
 
       {/* Menu */}
@@ -67,12 +80,18 @@ const Nav = () => {
           </button>
 
           <div className="grid items-start gap-2">
-            {session?.user && (
-              <Link className="button" href={'/trips'} onClick={closeMenu}>
-                My Trips
+            {/* Add new trip */}
+            {session?.user?.id && (
+              <Link
+                className="flex items-center gap-2 button"
+                href="/trips/new"
+                onClick={closeMenu}
+              >
+                New <PlusIcon width="20" height="20" />
               </Link>
             )}
 
+            {/* Auth */}
             <AuthButton onClick={closeMenu} />
           </div>
         </aside>
