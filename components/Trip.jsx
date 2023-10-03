@@ -11,7 +11,7 @@ const Trip = ({ trip, setTrip, loading, error, daysTill, deleteTrip }) => {
   return (
     <div className="grid flex-auto h-full">
       {error ? (
-        <div className="container grid max-w-sm gap-4 my-8 text-red-500 justify-items-center">
+        <div className="container grid content-start max-w-sm gap-4 my-8 text-red-500 justify-items-center">
           <Image
             src={ErrorImage}
             alt="Error image"
@@ -25,7 +25,7 @@ const Trip = ({ trip, setTrip, loading, error, daysTill, deleteTrip }) => {
           <span>{error}</span>
 
           <Link className="button button--primary" href="/trips">
-            My Trips
+            Go back to My Trips
           </Link>
         </div>
       ) : (
