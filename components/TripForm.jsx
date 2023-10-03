@@ -5,6 +5,7 @@ import Heading from './Heading';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 const Form = () => {
   const { data: session } = useSession();
@@ -40,9 +41,11 @@ const Form = () => {
 
       if (response.ok) {
         router.push('/trips');
+        toast.success(`Trip to ${trip.location} created! 🎉`);
       }
     } catch (error) {
       console.error(error);
+      toast.error('Error creating trip. 😢');
     } finally {
       setSubmitting(false);
     }

@@ -1,5 +1,6 @@
 import { useSession } from 'next-auth/react';
 import DateColumn from './DateColumn';
+import { toast } from 'sonner';
 
 const DateColumns = ({ trip, setTrip }) => {
   const { data: session } = useSession();
@@ -16,6 +17,7 @@ const DateColumns = ({ trip, setTrip }) => {
     trip.itinerary[tripDateIndex].activities = updatedActivities;
 
     updateTrip(trip);
+    toast('Activity added');
   };
 
   const handleEditActivity = (day, editedActivity) => {
@@ -37,6 +39,7 @@ const DateColumns = ({ trip, setTrip }) => {
       editedActivity;
 
     updateTrip(trip);
+    toast('Activity edited');
   };
 
   const handleDeleteActivity = (day, activityID) => {
@@ -53,6 +56,7 @@ const DateColumns = ({ trip, setTrip }) => {
       .activities.splice(activityIndex, 1);
 
     updateTrip(tripCopy);
+    toast('Activity deleted');
   };
 
   const updateTrip = async (newTrip) => {
@@ -78,19 +82,21 @@ const DateColumns = ({ trip, setTrip }) => {
 
   return (
     <main className="flex h-full overflow-x-auto whitespace-nowrap no-scrollbar">
-      {trip.itinerary
-        ? trip.itinerary.map((day, key) => (
-            <DateColumn
-              trip={trip}
-              day={day}
-              key={key}
-              handleAddActivity={handleAddActivity}
-              handleEditActivity={handleEditActivity}
-              handleDeleteActivity={handleDeleteActivity}
-              setTrip={setTrip}
-            />
-          ))
-        : 'Loading...'}
+      {trip.itinerary ? (
+        trip.itinerary.map((day, key) => (
+          <DateColumn
+            trip={trip}
+            day={day}
+            key={key}
+            handleAddActivity={handleAddActivity}
+            handleEditActivity={handleEditActivity}
+            handleDeleteActivity={handleDeleteActivity}
+            setTrip={setTrip}
+          />
+        ))
+      ) : (
+        <div className="p-4">Loading...</div>
+      )}
     </main>
   );
 };

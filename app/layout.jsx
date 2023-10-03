@@ -3,6 +3,7 @@ import SessionProvider from '@/components/Provider';
 import '@/styles/main.css';
 
 import { Bricolage_Grotesque } from 'next/font/google';
+import { Toaster } from 'sonner';
 
 const bricolage_grotesque = Bricolage_Grotesque({ subsets: ['latin'] });
 
@@ -23,6 +24,8 @@ export default async function RootLayout({ children }) {
       >
         <div className="flex flex-col min-h-screen overflow-x-hidden">
           <SessionProvider>
+            <Toaster />
+
             <Nav />
 
             {children}

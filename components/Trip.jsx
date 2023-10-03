@@ -29,11 +29,10 @@ const Trip = ({ trip, setTrip, loading, error, daysTill, deleteTrip }) => {
           </Link>
         </div>
       ) : (
-        // grid md:content-stretch md:grid-flow-col-dense
-        <div className="grid content-start grid-rows-[min-content,1fr] md:grid-rows-1 md:content-stretch md:grid-flow-col-dense">
+        <div className="grid content-start grid-rows-[min-content,1fr] md:grid-rows-1 md:content-stretch md:grid-cols-[min-content,1fr]">
           {/* Dashboard header */}
           <div className="grid content-start gap-4 p-4 text-white bg-slate-900 md:min-w-[16rem] md:max-w-sm">
-            <h1 className="text-2xl font-bold md:text-4xl">
+            <h1 className="flex flex-wrap gap-2 text-2xl font-bold md:text-4xl">
               Your Trip To{' '}
               {loading ? (
                 <div className="h-8 rounded w-36 bg-slate-200 animate-pulse"></div>
