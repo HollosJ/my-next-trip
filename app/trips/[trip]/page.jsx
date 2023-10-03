@@ -2,8 +2,9 @@
 
 import Trip from '@/components/Trip';
 import { useSession } from 'next-auth/react';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
 const Page = ({ params }) => {
   const router = useRouter();
@@ -63,6 +64,7 @@ const Page = ({ params }) => {
 
       // Send user back to their trips page
       router.push('/trips');
+      toast.success('Trip deleted! 🗑️');
     } catch (error) {
       console.error(error);
     }
