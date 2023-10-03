@@ -9,7 +9,7 @@ import Heading from './Heading';
 
 const Trip = ({ trip, setTrip, loading, error, daysTill, deleteTrip }) => {
   return (
-    <div className="">
+    <div className="grid flex-auto h-full">
       {error ? (
         <div className="container grid max-w-sm gap-4 my-8 text-red-500 justify-items-center">
           <Image
@@ -29,37 +29,35 @@ const Trip = ({ trip, setTrip, loading, error, daysTill, deleteTrip }) => {
           </Link>
         </div>
       ) : (
-        <div className="flex flex-col">
+        // grid md:content-stretch md:grid-flow-col-dense
+        <div className="grid content-start grid-rows-[min-content,1fr] md:grid-rows-1 md:content-stretch md:grid-flow-col-dense">
           {/* Dashboard header */}
-          <div className="text-white bg-slate-300">
-            <div className="container flex flex-wrap items-center justify-between gap-4 p-4">
-              <h1 className="flex flex-wrap items-center gap-2 text-2xl font-bold md:text-4xl">
-                Your Trip To{' '}
-                {loading ? (
-                  <div className="h-8 rounded w-36 bg-slate-200 animate-pulse"></div>
-                ) : (
-                  <span className="text-black">{trip.location}</span>
-                )}
-              </h1>
+          <div className="grid content-start gap-4 p-4 text-white bg-slate-900 md:min-w-[16rem] md:max-w-sm">
+            <h1 className="text-2xl font-bold md:text-4xl">
+              Your Trip To{' '}
+              {loading ? (
+                <div className="h-8 rounded w-36 bg-slate-200 animate-pulse"></div>
+              ) : (
+                <span className="text-transparent break-words gradient--green bg-clip-text">
+                  {trip.location}
+                </span>
+              )}
+            </h1>
 
-              <div className="flex flex-wrap gap-4">
-                {daysTill > 0 && !loading && (
-                  <div className="flex items-center gap-2 p-2 text-black bg-white rounded">
-                    <ClockIcon className="w-6 h-6" />
+            <div className="flex flex-wrap gap-4">
+              {daysTill > 0 && !loading && (
+                <div className="flex items-center gap-2 p-2 text-black bg-white rounded">
+                  <ClockIcon className="w-6 h-6" />
 
-                    <p>Only {daysTill} days away!</p>
-                  </div>
-                )}
+                  <p>Only {daysTill} days away!</p>
+                </div>
+              )}
 
-                {!loading && (
-                  <button
-                    className="button button--danger"
-                    onClick={deleteTrip}
-                  >
-                    Delete
-                  </button>
-                )}
-              </div>
+              {!loading && (
+                <button className="button button--danger" onClick={deleteTrip}>
+                  Delete
+                </button>
+              )}
             </div>
           </div>
 

@@ -77,7 +77,7 @@ const DateColumns = ({ trip, setTrip }) => {
   };
 
   return (
-    <div className="flex gap-4 px-4 py-4 overflow-x-auto no-scrollbar whitespace-nowrap">
+    <main className="flex h-full overflow-x-auto whitespace-nowrap no-scrollbar">
       {trip.itinerary
         ? trip.itinerary.map((day, key) => (
             <DateColumn
@@ -91,7 +91,7 @@ const DateColumns = ({ trip, setTrip }) => {
             />
           ))
         : 'Loading...'}
-    </div>
+    </main>
   );
 };
 

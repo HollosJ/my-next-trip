@@ -15,13 +15,13 @@ const DateColumn = ({
   const [formShowing, setFormShowing] = useState(false);
 
   return (
-    <div className="inline-grid content-start overflow-y-auto no-scrollbar gap-4 text-left rounded min-w-[300px] max-w-[300px]">
+    <div className="inline-grid content-start no-scrollbar gap-4 p-4 text-left min-w-[320px] max-w-[320px] border-r last:border-r-0">
       {/* Formatted date */}
       <h3 className="text-lg font-bold">{formatDate(new Date(day.date))}</h3>
 
       {/* Activities */}
       {day.activities.length > 0 && (
-        <div className="grid gap-4">
+        <div className="grid h-full gap-4">
           {day.activities.map((activity, key) => (
             <Activity
               key={key}
@@ -34,17 +34,19 @@ const DateColumn = ({
         </div>
       )}
 
-      {formShowing ? (
-        <ActivityForm
-          onSave={handleAddActivity}
-          day={day}
-          setFormShowing={setFormShowing}
-        />
-      ) : (
-        <button className="button" onClick={() => setFormShowing(true)}>
-          Add New
-        </button>
-      )}
+      <div className="grid">
+        {formShowing ? (
+          <ActivityForm
+            onSave={handleAddActivity}
+            day={day}
+            setFormShowing={setFormShowing}
+          />
+        ) : (
+          <button className="button" onClick={() => setFormShowing(true)}>
+            Add New
+          </button>
+        )}
+      </div>
     </div>
   );
 };
