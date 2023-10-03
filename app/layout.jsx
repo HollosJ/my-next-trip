@@ -1,6 +1,5 @@
 import Nav from '@/components/Nav';
 import SessionProvider from '@/components/Provider';
-import { getServerSession } from 'next-auth';
 import '@/styles/main.css';
 
 import { Bricolage_Grotesque } from 'next/font/google';
@@ -13,8 +12,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const session = await getServerSession();
-
   return (
     <html lang="en">
       <head>
