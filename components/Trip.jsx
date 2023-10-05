@@ -31,17 +31,25 @@ const Trip = ({ trip, setTrip, loading, error, daysTill, deleteTrip }) => {
       ) : (
         <div className="grid content-start grid-rows-[min-content,1fr] md:grid-rows-1 md:content-stretch md:grid-cols-[min-content,1fr]">
           {/* Dashboard header */}
-          <div className="grid content-start gap-4 p-4 text-white bg-slate-900 md:min-w-[16rem] md:max-w-sm">
-            <h1 className="flex flex-wrap gap-2 text-2xl font-bold md:text-4xl">
-              Your Trip To{' '}
-              {loading ? (
-                <div className="h-8 rounded w-36 bg-slate-200 animate-pulse"></div>
-              ) : (
-                <span className="text-transparent break-words gradient--green bg-clip-text">
-                  {trip.location}
-                </span>
-              )}
-            </h1>
+          <div className="grid content-start gap-4 p-4 text-white bg-slate-950 md:w-64">
+            {/* Title */}
+            <div className="overflow-hidden">
+              <span>Your trip to</span>
+
+              <h1>
+                {loading ? (
+                  <div className="h-8 rounded w-36 bg-slate-200 animate-pulse"></div>
+                ) : (
+                  <span
+                    className={`text-transparent break-words gradient--green font-bold bg-clip-text ${
+                      trip.location.length <= 10 ? 'text-4xl' : 'text-xl'
+                    }`}
+                  >
+                    {trip.location}
+                  </span>
+                )}
+              </h1>
+            </div>
 
             <div className="flex flex-wrap gap-4">
               {daysTill > 0 && !loading && (
