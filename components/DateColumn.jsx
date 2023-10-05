@@ -1,6 +1,5 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import Activity from './Activity';
 import ActivityForm from './ActivityForm';
 import { formatDate } from '@/utils/helpers';
