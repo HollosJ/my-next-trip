@@ -95,9 +95,46 @@ const DateColumns = ({ trip, setTrip }) => {
           />
         ))
       ) : (
-        <div className="p-4">Loading...</div>
+        <LoadingColumns />
       )}
     </main>
+  );
+};
+
+const LoadingColumns = () => {
+  return (
+    <main className="flex h-full overflow-x-auto whitespace-nowrap no-scrollbar">
+      <LoadingColumn activityCount={2} />
+      <LoadingColumn activityCount={5} />
+      <LoadingColumn activityCount={4} />
+      <LoadingColumn activityCount={3} />
+      <LoadingColumn activityCount={1} />
+      <LoadingColumn activityCount={2} />
+      <LoadingColumn activityCount={3} />
+    </main>
+  );
+};
+
+const LoadingColumn = ({ activityCount = 3 }) => {
+  return (
+    <div className="inline-grid content-start no-scrollbar gap-4 p-4 min-w-[320px] max-w-[320px] border-r last:border-r-0">
+      {/* Formatted date */}
+      <div className="h-8 skeleton"></div>
+
+      {/* Activities */}
+      <div className="grid h-full gap-4">
+        {/* Activity skeleton for each count */}
+        {Array.from(Array(activityCount)).map((_, key) => (
+          <div className="grid h-10 gap-4" key={key}>
+            <div className="h-10 skeleton"></div>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid">
+        <div className="h-10 skeleton"></div>
+      </div>
+    </div>
   );
 };
 
