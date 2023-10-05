@@ -84,7 +84,7 @@ const Form = () => {
             <label htmlFor="start_date">Arrival date</label>
 
             <input
-              className="input"
+              className="w-full input"
               type="date"
               id="start_date"
               value={trip.startDate}
@@ -106,7 +106,7 @@ const Form = () => {
             <label htmlFor="end_date">Leaving date</label>
 
             <input
-              className="input"
+              className="w-full input"
               type="date"
               id="end_date"
               value={trip.endDate}
