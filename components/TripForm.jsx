@@ -124,7 +124,11 @@ const Form = () => {
 
         {/* Buttons */}
         <div className="flex flex-wrap gap-2 justify-self-end">
-          <Link className="button" href="/">
+          <Link
+            className="button"
+            href="/trips"
+            onClick={() => toast('Trip creation cancelled.')}
+          >
             Cancel
           </Link>
 
