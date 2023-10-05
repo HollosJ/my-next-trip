@@ -81,8 +81,8 @@ const DateColumns = ({ trip, setTrip }) => {
   };
 
   return (
-    <main className="flex h-full overflow-x-auto whitespace-nowrap no-scrollbar">
-      {/* <div className="absolute z-10 w-4 h-full bg-gradient-to-r from-slate-50 to-transparent"></div> */}
+    <main className="relative flex h-full overflow-x-auto shadow-inner whitespace-nowrap no-scrollbar">
+      <div className="fixed z-10 w-4 h-full bg-gradient-to-r from-slate-50 to-transparent"></div>
 
       {trip.itinerary ? (
         trip.itinerary.map((day, key) => (
@@ -100,7 +100,7 @@ const DateColumns = ({ trip, setTrip }) => {
         <LoadingColumns />
       )}
 
-      {/* <div className="absolute right-0 z-10 w-4 h-full bg-gradient-to-r to-slate-50 from-transparent"></div> */}
+      <div className="fixed right-0 z-10 w-4 h-full bg-gradient-to-l from-slate-50 to-transparent"></div>
     </main>
   );
 };
