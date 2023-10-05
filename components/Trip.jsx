@@ -33,7 +33,7 @@ const Trip = ({ trip, setTrip, loading, error, daysTill, deleteTrip }) => {
           {/* Dashboard header */}
           <div className="grid content-start gap-4 p-4 text-white bg-slate-950 md:w-64">
             {/* Title */}
-            <div className="overflow-hidden">
+            <div className="flex flex-wrap items-center gap-2 overflow-hidden">
               <span>Your trip to</span>
 
               <h1>
@@ -41,8 +41,8 @@ const Trip = ({ trip, setTrip, loading, error, daysTill, deleteTrip }) => {
                   <div className="h-8 rounded w-36 bg-slate-200 animate-pulse"></div>
                 ) : (
                   <span
-                    className={`text-transparent break-words gradient--green font-bold bg-clip-text ${
-                      trip.location.length <= 10 ? 'text-4xl' : 'text-xl'
+                    className={`text-transparent text-2xl break-words gradient--green font-bold bg-clip-text ${
+                      trip.location.length <= 10 ? 'md:text-4xl' : 'md:text-xl'
                     }`}
                   >
                     {trip.location}
