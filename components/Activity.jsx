@@ -14,7 +14,7 @@ const Activity = ({ activity, day, onSave, handleDeleteActivity }) => {
       {/* Show activity details */}
       <div className="whitespace-normal bg-white rounded shadow-md">
         {formShowing ? (
-          <div className="grid p-4">
+          <div className="grid p-2">
             <ActivityForm
               activity={activity}
               day={day}
@@ -23,9 +23,9 @@ const Activity = ({ activity, day, onSave, handleDeleteActivity }) => {
             />
           </div>
         ) : (
-          <div className="relative flex">
+          <div className="relative flex items-start">
             {/* Activity content */}
-            <div className="grid flex-1 p-4">
+            <div className="grid flex-1 p-2">
               <h3 className="text-lg font-bold">{activity.title}</h3>
 
               {activity.location && <span>{activity.location}</span>}
