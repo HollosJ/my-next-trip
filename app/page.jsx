@@ -2,7 +2,7 @@ import Image from 'next/image';
 import HeroImage from '@/public/images/hero-image.svg';
 import AuthButton from '@/components/AuthButton';
 
-export default async function Home() {
+export default function Home() {
   return (
     <>
       {/* Hero section */}
