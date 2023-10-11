@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ActivityForm from './ActivityForm';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { toast } from 'sonner';
 
 const Activity = ({ activity, day, onSave, handleDeleteActivity }) => {
   const [formShowing, setFormShowing] = useState(false);
@@ -39,14 +40,17 @@ const Activity = ({ activity, day, onSave, handleDeleteActivity }) => {
             <div className="grid content-start gap-1 p-4 pl-0">
               <button
                 className="underline"
-                onClick={() => {
-                  if (
-                    window.confirm(
-                      'Are you sure you want to delete this activity?'
-                    )
+                onClick={() =>
+                  toast.error(
+                    'Are you sure you want to delete this activity?',
+                    {
+                      action: {
+                        label: 'Delete',
+                        onClick: () => handleDeleteActivity(day, activity),
+                      },
+                    }
                   )
-                    handleDeleteActivity(day, activity._id);
-                }}
+                }
               >
                 <TrashIcon className="w-6 h-6 transition text-slate-300 hover:brightness-90" />
               </button>

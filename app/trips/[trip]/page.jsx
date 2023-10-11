@@ -48,8 +48,6 @@ const Page = ({ params }) => {
   };
 
   const deleteTrip = async () => {
-    if (!window.confirm('Are you sure you want to delete this trip?')) return;
-
     try {
       const response = await fetch(
         `/api/users/${session?.user.id}/trips/${params.trip}`,
