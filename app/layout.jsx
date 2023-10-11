@@ -24,7 +24,7 @@ export default async function RootLayout({ children }) {
       >
         <div className="flex flex-col min-h-screen overflow-x-hidden">
           <SessionProvider>
-            <Toaster />
+            <Toaster visibleToasts={1} position="bottom-center" />
 
             <Nav />
 
