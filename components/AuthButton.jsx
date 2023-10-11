@@ -7,12 +7,12 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 const AuthButton = ({ onClick }) => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   return (
     <>
-      {session?.user ? (
+      {status === 'authenticated' && (
         <>
           <Link
             className="flex items-center gap-2 button button--primary"
@@ -44,11 +44,13 @@ const AuthButton = ({ onClick }) => {
             />
           </button>
         </>
-      ) : (
+      )}
+
+      {status === 'unauthenticated' && (
         <Link
           className="button button--primary"
           onClick={onClick ? onClick : null}
-          href={'/api/auth/signin'}
+          href={'/api/auth/signin?=callbackUrl=/trips'}
         >
           Sign In
         </Link>
