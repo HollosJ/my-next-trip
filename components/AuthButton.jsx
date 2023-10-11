@@ -55,6 +55,8 @@ const AuthButton = ({ onClick }) => {
           Sign In
         </Link>
       )}
+
+      {status === 'loading' && <p>Loading...</p>}
     </>
   );
 };
