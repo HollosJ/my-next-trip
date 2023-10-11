@@ -50,7 +50,7 @@ const AuthButton = ({ onClick }) => {
         <Link
           className="button button--primary"
           onClick={onClick ? onClick : null}
-          href={'/api/auth/signin?=callbackUrl=/trips'}
+          href={'/api/auth/signin?callbackUrl=/trips'}
         >
           Sign In
         </Link>
