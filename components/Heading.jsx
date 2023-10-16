@@ -1,4 +1,4 @@
-const Heading = ({ tag = 'h2', text = 'A Heading', children }) => {
+const Heading = ({ tag = 'h2', children }) => {
   const CustomTag = `${tag}`;
 
   return (
