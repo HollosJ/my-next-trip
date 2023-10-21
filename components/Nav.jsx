@@ -68,7 +68,7 @@ const Nav = () => {
         ></button>
 
         <aside
-          className={`h-screen max-w-xs w-full content-start items-start absolute top-0 grid overflow-y-auto gap-4 transition-all bg-white p-4 ${
+          className={`h-screen w-64 content-start items-start absolute top-0 grid overflow-y-auto gap-4 transition-all bg-white p-4 ${
             menuOpen ? 'right-0' : '-right-full'
           }`}
         >
