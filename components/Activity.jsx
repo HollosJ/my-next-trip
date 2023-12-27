@@ -31,6 +31,8 @@ const Activity = ({ activity, day, onSave, handleDeleteActivity }) => {
 
               {activity.location && <span>{activity.location}</span>}
 
+              {activity.time && <span>{activity.time}</span>}
+
               {activity.notes && (
                 <p className="break-all opacity-75">"{activity.notes}"</p>
               )}
