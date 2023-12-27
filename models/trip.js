@@ -8,6 +8,9 @@ const ActivitySchema = new Schema({
   location: {
     type: String,
   },
+  time: {
+    type: String, //Not sure if this is the best way to store time...
+  },
   notes: {
     type: String,
   },

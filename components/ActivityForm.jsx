@@ -5,6 +5,7 @@ const ActivityForm = ({ activity, day, onSave, setFormShowing }) => {
   const fieldIDs = {
     title: uuid(),
     location: uuid(),
+    time: uuid(),
     notes: uuid(),
   };
 
@@ -12,6 +13,7 @@ const ActivityForm = ({ activity, day, onSave, setFormShowing }) => {
     activity || {
       title: '',
       location: '',
+      time: '',
       notes: '',
     }
   );
@@ -33,6 +35,7 @@ const ActivityForm = ({ activity, day, onSave, setFormShowing }) => {
     setEditedActivity({
       title: '',
       location: '',
+      time: '',
       notes: '',
     });
     setFormShowing(false);
@@ -64,6 +67,19 @@ const ActivityForm = ({ activity, day, onSave, setFormShowing }) => {
           value={editedActivity.location}
           onChange={handleInputChange}
           datafieldtitle="location"
+        />
+      </div>
+
+      {/* Time (optional) */}
+      <div className="grid">
+        <label htmlFor={fieldIDs.time}>When?</label>
+        <input
+          className="input"
+          type="time"
+          id={fieldIDs.time}
+          value={editedActivity.time}
+          onChange={handleInputChange}
+          datafieldtitle="time"
         />
       </div>
 
